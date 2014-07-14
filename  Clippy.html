@@ -1,0 +1,71 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="./css/clippy.css" media="all">
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+<script type="text/javascript" src="https://tableau.russellchristopher.org/javascripts/api/tableau_v8.js"></script>
+
+<script src="./scripts/clippy.js"></script>
+    
+</head>
+
+
+<body>
+  <div id="content">  </div>
+
+ <script>
+ var viz;
+ 
+
+function initializeViz() {
+  var placeholderDiv = document.getElementById("content");
+  var url = "https://tableau.russellchristopher.org/t/SkunkWorks/views/CerebralGameSelling/FloridaActivity";
+  var options = {
+    width: 1450,
+    height: 900,
+    hideTabs: true,
+    hideToolbar: false,
+    onFirstInteractive: function () {
+        clippy.load('Clippy', function(agent){
+        // do anything with the loaded agent
+            
+        agent.show();
+        agent.speak("Yes, it's me. You're not hallucinating.");
+        agent.moveTo(100,100);
+        agent.play('IdleHeadScratch');
+        agent.speak("You paying attention?");   
+        agent.play('LookDown');    
+        agent.play('LookRight');
+        //agent.getAttention();
+        agent.play('GetAttention'); 
+        agent.moveTo(250,500);   
+        agent.play("GestureUp");    
+    });
+	      }
+  };
+
+
+	try{
+		viz = new tableauSoftware.Viz(placeholderDiv, url, options);
+		}
+	catch	(e){
+		alert(e);
+		}
+ };
+  </script>
+ 
+  
+<script type="text/javascript">
+    // Initialize the app on document ready.
+    $(initializeViz);
+ </script>
+ 
+ 
+
+ 
+
+</body>
+
+
+
+<html>
