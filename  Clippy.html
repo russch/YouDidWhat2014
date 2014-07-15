@@ -1,71 +1,156 @@
 <html>
+
 <head>
-<link rel="stylesheet" type="text/css" href="./css/clippy.css" media="all">
+    <link rel="stylesheet" type="text/css" href="./css/clippy.css" media="all">
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-<script type="text/javascript" src="https://tableau.russellchristopher.org/javascripts/api/tableau_v8.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <script type="text/javascript" src="https://tableau.russellchristopher.org/javascripts/api/tableau_v8.js"></script>
 
-<script src="./scripts/clippy.js"></script>
-    
+    <script src="./scripts/clippy.js"></script>
+
 </head>
 
 
 <body>
-  <div id="content">  </div>
+    <div id="content"></div>
 
- <script>
- var viz;
- 
-
-function initializeViz() {
-  var placeholderDiv = document.getElementById("content");
-  var url = "https://tableau.russellchristopher.org/t/SkunkWorks/views/CerebralGameSelling/FloridaActivity";
-  var options = {
-    width: 1450,
-    height: 900,
-    hideTabs: true,
-    hideToolbar: false,
-    onFirstInteractive: function () {
-        clippy.load('Clippy', function(agent){
-        // do anything with the loaded agent
-            
-        agent.show();
-        agent.speak("Yes, it's me. You're not hallucinating.");
-        agent.moveTo(100,100);
-        agent.play('IdleHeadScratch');
-        agent.speak("You paying attention?");   
-        agent.play('LookDown');    
-        agent.play('LookRight');
-        //agent.getAttention();
-        agent.play('GetAttention'); 
-        agent.moveTo(250,500);   
-        agent.play("GestureUp");    
-    });
-	      }
-  };
+    <script>
+        var viz, agent;
 
 
-	try{
-		viz = new tableauSoftware.Viz(placeholderDiv, url, options);
-		}
-	catch	(e){
-		alert(e);
-		}
- };
-  </script>
- 
-  
-<script type="text/javascript">
-    // Initialize the app on document ready.
-    $(initializeViz);
- </script>
- 
- 
 
- 
+        function initializeViz() {
+            var placeholderDiv = document.getElementById("content");
+            var url = "https://tableau.russellchristopher.org/t/SkunkWorks/views/CerebralGameSelling/FloridaActivity";
+            var options = {
+                width: 1450,
+                height: 900,
+                hideTabs: true,
+                hideToolbar: false,
+                onFirstInteractive: function() {    
+                    
+                initClippy();   
+
+                }
+            };
+
+
+
+
+        try {
+            viz = new tableauSoftware.Viz(placeholderDiv, url, options);
+        } catch (e) {
+            alert(e);
+        }
+        };
+
+        function initClippy() {
+
+              clippy.load('Clippy', function(_agent) {
+                    agent = _agent;
+                    agent.show();
+//                    agent.moveTo(500, 200);
+//                    agent.speak("Yes, it's me.");
+//                    agent.play("LookRight");
+//                    agent.speak("You're not hallucinating.");
+//                    agent.moveTo(100, 100);
+//                    agent.speak("You paying attention?");
+//                    agent.play('GetAttention');
+//                    agent.moveTo(80, 280);
+//                    agent.play("Writing");
+                    agent.moveTo(250, 450);
+                    agent.play("GestureUp", 5000, function(){selectPie()});
+
+//                    agent.play("LookUp", 1000);
+//                    agent.speak("Poor Adventure games sales.");
+                    
+                });
+
+                   
+            }
+        
+   
+        
+function selectPie(){ 
+    //Select Pie Slice
+    mainWorkbook = viz.getWorkbook(); 
+    var newSheet = mainWorkbook.getActiveSheet().getWorksheets().get("Pie"); 
+    // Select a pie slice, then start listening for city selection
+    newSheet.selectMarksAsync("Genre", "Adventure", "ADD");
+    viz.addEventListener("marksselection", onMarksSelection);
+     
+}
+     
+        
+function onSuccess(result) {
+    
+
+    var selectedMarks = result;
+    var alertOutput = "";
+    // Since this event will get fired even when marks (like a pie slice) are de-selected, 
+    // Only continue of there are marks which HAVE been selected...
+    if (selectedMarks.length !== 0) 
+     {
+
+         // Get a single selected Mark
+         pairs = selectedMarks[0].getPairs();
+         console.log('Pairs: ' + pairs.length);
+         // Get selected City
+         alertOutput = pairs[0].value;
+        
+
+        viz.removeEventListener("marksselection", onMarksSelection);
+
+         // Mark selection events being fired more than once may cause too many Merlins to load
+         // Count the number of Clippys shown so that only 2 will ever be displayed.
+         if (($('.clippy').length) < 2) {         
+         
+         clippy.load('Merlin', function(agent2) {
+                    console.log('load');                 
+                    agent2.show();
+                    agent2.moveTo(750, 300);
+                    agent2.speak(alertOutput + ' is an excellent choice.');
+                    agent2.play("Surprised",500);
+                    agent2.play("Thinking",500);
+                    agent2.play("DoMagic2",750, function(){ viz.getWorkbook().activateSheetAsync("Sales Dashboard");});
+                    agent2.moveTo(700,150);
+                    agent2.play("LookRightBlink",500);
+                    agent.play("Hide");
+                    agent2.play("Congratulate",2000);
+                    agent2.speak("You've been a lovely audience");
+                    agent2.play("Congratulate_2",2000);
+                    agent2.play("Hide");      
+                    
+            });
+         }
+    }
+}
+
+function onError(message) {
+    alert("Error: '" + message + "'");
+}        
+function onMarksSelection() {
+    mainWorkbook = viz.getWorkbook();
+    var newSheet = mainWorkbook.getActiveSheet().getWorksheets().get("Florida");
+    // See above for promise defintion of onSuccess, onError
+    newSheet.getSelectedMarksAsync().then(onSuccess, onError);
+}        
+
+        
+    </script>
+
+
+    <script type="text/javascript">
+        // Initialize the app on document ready.
+        $(initializeViz);
+    </script>
+
+
+
+
 
 </body>
 
 
 
-<html>
+</html>

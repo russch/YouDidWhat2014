@@ -52,8 +52,8 @@ clippy.Agent.prototype = {
             this._el.hide();
             this.stop();
             this.pause();
-            if (callback) callback();
             return;
+            
         }
 
         return this._playInternal('Hide', function () {
@@ -212,6 +212,7 @@ clippy.Agent.prototype = {
         this._queue.clear();
         this._animator.exitAnimation();
         this._balloon.hide();
+
     },
 
     /***
