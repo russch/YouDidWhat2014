@@ -1,0 +1,83 @@
+<html>
+	<head>
+		<style>
+			html, body {
+				margin: 0;
+				padding: 0;
+				font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+				font-size: 14px;
+				line-height: 20px;
+				color: #333333;
+				background-color: #ffffff;
+			}
+			a:focus {
+			  outline: thin dotted #333;
+			  outline: 5px auto -webkit-focus-ring-color;
+			  outline-offset: -2px;
+			}
+
+			a:hover,
+			a:active {
+			  outline: 0;
+			}
+			a {
+			  color: #0088cc;
+			  text-decoration: none;
+			}
+
+			a:hover {
+			  color: #005580;
+			  text-decoration: underline;
+			}
+			h3 {
+				margin: 0;
+				margin-bottom: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div style="width:100%;height: 100%;" id="maps"></div>
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		<script>
+			var coords = [38.89859,-77.035971],
+			container = document.getElementById('maps'),
+ 
+			map = new google.maps.Map(container, {
+				zoom: 15, // Close zoom!
+				mapTypeId: google.maps.MapTypeId.ROADMAP // Use the classic roadmap
+			}),
+			latlong, marker;
+
+			// Setup lat/long coordinates
+			latlong = new google.maps.LatLng(parseFloat(coords[0]), parseFloat(coords[1]));
+
+			// Create marker at the new location and center map there
+			marker = new google.maps.Marker({
+				position: latlong,
+				map: map,
+				title: "The White House"
+			});
+			map.setCenter(latlong);
+			
+			var contentString = '<div id="content">'+
+				'<div id="siteNotice">'+
+				'</div>'+
+				'<h3>White House</h3>'+
+				'<div id="bodyContent">'+
+				'<p>The <b>White House</b> is the <a href="http://en.wikipedia.org/wiki/Official_residence" target="_blank" title="Official residence">official residence</a> and principal workplace of the <a href="http://en.wikipedia.org/wiki/President_of_the_United_States" target="_blank" title="President of the United States">President of the United States</a>. Located at 1600 <a href="http://en.wikipedia.org/wiki/Pennsylvania_Avenue" title="Pennsylvania Avenue" target="_blank">Pennsylvania Avenue</a> <a href="http://en.wikipedia.org/wiki/Northwest,_Washington,_D.C." title="Northwest, Washington, D.C." target="_blank">Northwest, Washington, D.C.</a>, the house was designed...</p>'+
+				'<p><b>White House</b>, <a href="http://en.wikipedia.org/wiki/White_House" target="_blank">'+
+				'http://en.wikipedia.org/wiki/White_House</a></p>'+
+				'</div>'+
+				'</div>';
+
+			var infowindow = new google.maps.InfoWindow({
+				content: contentString,
+				maxWidth: 400
+			});
+			
+			google.maps.event.addListener(marker, 'click', function() {
+				infowindow.open(map,marker);
+			});
+		</script>
+	</body>
+</html>

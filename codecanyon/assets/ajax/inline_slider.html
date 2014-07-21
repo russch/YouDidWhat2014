@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="author" content="Hemn Chawroka" />
+		<link href="../../src/css/ilightbox.css" rel="stylesheet" />
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/jquery.requestAnimationFrame.js"></script>
+		<script type="text/javascript" src="../../src/js/jquery.mousewheel.js"></script>
+		<script type="text/javascript" src="../../src/js/ilightbox.packed.js"></script>
+
+		<script type="text/javascript">
+
+			$(window).load(function(){
+				$.iLightBox(
+					[
+						{
+							URL: "http://iprodev.com/ilightbox/assets/MV5BMTM1NTMyMDE4OV5BMTFeQW1wNF5BbWU3MDEyNTI0OTU.mp4",
+							options: {
+								thumbnail: "../img/thumbnails/sherlock_holmes/trailer.jpg",
+								html5video: {
+									webm: "http://iprodev.com/ilightbox/assets/MV5BMTM1NTMyMDE4OV5BMTFeQW1wNF5BbWU3MDEyNTI0OTU.webm",
+									poster: "../img/sherlock_holmes/trailer.jpg"
+								},
+								width: 1280,
+								height: 544
+							}
+						},
+						{
+							URL: "../img/sherlock_holmes/1.jpg",
+							options: {
+								thumbnail: "../img/thumbnails/sherlock_holmes/1.jpg"
+							}
+						},
+						{
+							URL: "../img/sherlock_holmes/2.jpg",
+							options: {
+								thumbnail: "../img/thumbnails/sherlock_holmes/2.jpg"
+							}
+						},
+						{
+							URL: "http://www.youtube.com/embed/lNxhpNpnAkk?autohide=1&border=0&egm=0&showinfo=0&showsearch=0",
+							options: {
+								thumbnail: "../img/thumbnails/sherlock_holmes/mqdefault.jpg",
+								icon: "video",
+								width: 1280,
+								height: 720
+							}
+						},
+						{
+							URL: "../img/sherlock_holmes/3.jpg",
+							options: {
+								thumbnail: "../img/thumbnails/sherlock_holmes/3.jpg"
+							}
+						},
+						{
+							URL: "../img/sherlock_holmes/4.jpg",
+							options: {
+								thumbnail: "../img/thumbnails/sherlock_holmes/4.jpg"
+							}
+						},
+						{
+							URL: "../img/sherlock_holmes/5.jpg",
+							options: {
+								thumbnail: "../img/thumbnails/sherlock_holmes/5.jpg"
+							}
+						},
+						{
+							URL: "../img/sherlock_holmes/6.jpg",
+							options: {
+								thumbnail: "../img/thumbnails/sherlock_holmes/6.jpg"
+							}
+						},
+						{
+							URL: "../img/sherlock_holmes/7.jpg",
+							options: {
+								thumbnail: "../img/thumbnails/sherlock_holmes/7.jpg"
+							}
+						},
+						{
+							URL: "../img/sherlock_holmes/8.jpg",
+							options: {
+								thumbnail: "../img/thumbnails/sherlock_holmes/8.jpg"
+							}
+						}
+					],
+					{
+						path: 'horizontal',
+						skin: 'metro-black custom',
+						minScale: 0.1,
+						fullViewPort: 'fill',
+						mobileOptimizer: false,
+						overlay: {
+							opacity: 0,
+							blur: 0
+						},
+						styles: {
+							nextOffsetX: 60,
+							prevOffsetX: 60
+						},
+						controls: {
+							thumbnail: false,
+							arrows: true
+						},
+						keyboard: {
+							esc: 0
+						}
+					}
+				);
+			});
+		
+		</script>
+		
+		<style>
+			html {
+				margin: 0;
+				padding: 0;
+				overflow: hidden;
+				background: #141414;
+			}
+			
+			.ilightbox-holder.custom {
+				-webkit-box-shadow: none;
+				box-shadow: none;
+				
+				padding: 20px;
+				background: #171717;
+			}
+			
+			.ilightbox-holder.ilightbox-fullscreen {
+				background: #000;
+			}
+			
+			.ilightbox-close {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+
+	</body>
+</html>

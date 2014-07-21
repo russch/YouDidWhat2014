@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/codecanyon/src/css/ilightbox.css"/>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+    <script type="text/javascript" src="/codecanyon/src/js/jquery.requestAnimationFrame.js"></script>
+    <script type="text/javascript" src="/codecanyon/src/js/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="/codecanyon/src/js/ilightbox.packed.js"></script 
+
+    <script type="text/javascript" src="https://tableau.russellchristopher.org/javascripts/api/tableau_v8.js"></script>
+
+
+
+</head>
+
+
+<body>
+    <div id="content"></div>
+    <a href="http://www.iprodev.com/" id="iframe_1" data-options="width:'95%', height:460" class="btn btn-large btn-block btn-inverse">Open iProDev (95%x460)</a>
+
+    <script>
+        var viz, agent;
+
+
+
+        function initialize() {
+                //                                height: 513,
+                 //               width: 695
+                //
+				$.iLightBox(
+					[
+						
+                        {
+							URL: "https://tableau.russellchristopher.org/t/SkunkWorks/views/BMD-TR-WEB/Dashboard4?:embed=y&:display_count=no&:toolbar=no",
+							options: {
+								thumbnail: "codecanyon/assets/img/thumbnails/thumb-Visits-vs-Time.jpg",
+                                height: 450,
+                                width: 936
+							},
+							type: "iframe",
+							caption: "Oh yeah, it's that good. See for yourself."
+						},
+                        {
+							URL: "https://tableau.russellchristopher.org/t/SkunkWorks/views/UnemploymentHorizionChart/HorizonChart?:embed=y&:toolbar=no&:display_count=no",
+							options: {
+								thumbnail: "codecanyon/assets/img/thumbnails/thumb_horizon-chart.jpg",
+                                height: 450,
+                                width: 936
+							},
+							type: "iframe",
+							caption: "Unemployment Horizon by Joe Mako"
+						},
+
+						{
+							URL: "https://tableau.russellchristopher.org/t/SkunkWorks/views/2014FIFAWorldCupBRAvsGERPlayerAttention/PlayerAttention?:embed=y&:display_count=no&:toolbar=no",
+							options: {
+								thumbnail: "codecanyon/assets/img/thumbnails/thumb-player-attention.jpg",
+                                height: 450,
+                                width: 936
+							},
+							type: "iframe",
+							caption: "And lastly, this one. Checkmate."
+						},
+						{
+							URL: "codecanyon/assets/img/photos/MS-test-day-27780.jpg",
+							options: {
+								thumbnail: "codecanyon/assets/img/thumbnails/MS-test-day-27780.jpg"
+							},
+							type: "image"
+						},
+						{
+							URL: "codecanyon/assets/img/photos/MS-test-day-278081.jpg",
+							options: {
+								thumbnail: "codecanyon/assets/img/thumbnails/MS-test-day-278081.jpg"
+							},
+							type: "image"
+						},
+						{
+							URL: "codecanyon/assets/img/photos/MS-test-day-27749.jpg",
+							options: {
+								thumbnail: "codecanyon/assets/img/thumbnails/MS-test-day-27749_2.jpg"
+							},
+							type: "image"
+						}
+					],
+					{
+						skin: 'metro-white',
+						path: 'horizontal',
+						overlay: {
+							opacity: .7,
+							blur: false
+						},
+						keyboard: {
+							esc: false
+						},
+						styles: {
+							nextOpacity: .55,
+							prevOpacity: .55
+						}
+					}
+				);
+				return false;
+			};
+			// End of the "Open in Modal" Example
+       
+        
+    </script>
+
+
+    <script type="text/javascript">
+        // Initialize the app on document ready.
+        $(initialize);
+    </script>
+
+
+
+
+
+</body>
+
+
+
+</html>

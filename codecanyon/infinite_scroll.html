@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>iLightBox &middot; Revolutionary Lightbox Plugin</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="assets/css/docs.css" rel="stylesheet">
+    <link href="src/css/ilightbox.css" rel="stylesheet">
+    <style>
+
+    /* GLOBAL STYLES
+    -------------------------------------------------- */
+    /* Padding below the footer and lighter body text */
+
+    body {
+      padding-top: 0;
+      padding-bottom: 40px;
+      color: #5a5a5a;
+    }
+	
+	.jumbotron {
+	  background: #793e3a; /* Old browsers */
+	  background: -moz-linear-gradient(45deg,  #793e3a 0%, #170f3e 100%); /* FF3.6+ */
+	  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#793e3a), color-stop(100%,#170f3e)); /* Chrome,Safari4+ */
+	  background: -webkit-linear-gradient(45deg,  #793e3a 0%,#170f3e 100%); /* Chrome10+,Safari5.1+ */
+	  background: -o-linear-gradient(45deg,  #793e3a 0%,#170f3e 100%); /* Opera 11.10+ */
+	  background: -ms-linear-gradient(45deg,  #793e3a 0%,#170f3e 100%); /* IE10+ */
+	  background: linear-gradient(45deg,  #793e3a 0%,#170f3e 100%); /* W3C */
+	  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#793e3a', endColorstr='#170f3e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	}
+	
+	.subhead .btn {
+		padding: 11px 19px;
+		font-size: 24px;
+		font-weight: 200;
+		color: #fff;
+		border: 0;
+		-webkit-border-radius: 6px;
+		-moz-border-radius: 6px;
+		border-radius: 6px;
+		-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+		-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+		box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+		-webkit-transition: none;
+		-moz-transition: none;
+		transition: none;
+		margin-top: 18px;
+	}
+
+
+
+    /* CUSTOMIZE THE NAVBAR
+    -------------------------------------------------- */
+
+    /* Special class on .container surrounding .navbar, used for positioning it into place. */
+    .navbar-wrapper {
+      position: fixed;
+      z-index: 1035;
+	  top: 0;
+	  left: 0;
+	  right: 0;
+    }
+
+    .navbar  {
+      margin-bottom: 0;
+    }
+
+    /* Remove border and change up box shadow for more contrast */
+    .navbar .navbar-inner {
+      border: 0;
+      -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.5);
+         -moz-box-shadow: 0 2px 10px rgba(0,0,0,.5);
+              box-shadow: 0 2px 10px rgba(0,0,0,.5);
+			  
+      -webkit-border-radius: 0 0 4px 4px;
+         -moz-border-radius: 0 0 4px 4px;
+              border-radius: 0 0 4px 4px;
+    }
+
+    /* Downsize the brand/project name a bit */
+    .navbar .brand {
+      padding: 14px 20px 16px; /* Increase vertical padding to match navbar links */
+      font-size: 16px;
+      font-weight: bold;
+      text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+    }
+
+    /* Navbar links: increase padding for taller navbar */
+    .navbar .nav > li > a {
+      padding: 15px 20px;
+    }
+
+    /* Offset the responsive button for proper vertical alignment */
+    .navbar .btn-navbar {
+      margin-top: 10px;
+    }
+
+
+
+    /* CUSTOMIZE THE NAVBAR
+    -------------------------------------------------- */
+	.masthead {
+		padding-top: 110px;
+		padding-bottom: 60px;
+	}
+
+
+
+    /* MARKETING CONTENT
+    -------------------------------------------------- */
+	.subhead {
+		padding-top: 90px;
+		padding-bottom: 40px;
+	}
+
+    /* Center align the text within the three columns below the carousel */
+    .marketing .span4, .marketing .span4 p, .marketing .marketing-byline {
+      text-align: center;
+    }
+	.marketing .marketing-byline.left {
+	  text-align: left;
+      margin-top: -50px;
+    }
+    .marketing h2 {
+      font-weight: normal;
+    }
+	.marketing p, .hero-unit {
+	  text-align: left;
+	}
+
+
+    /* Featurettes
+    ------------------------- */
+
+    .featurette-divider {
+      margin: 80px 0; /* Space out the Bootstrap <hr> more */
+    }
+    .featurette {
+      overflow: hidden; /* Vertically center images part 2: clear their floats. */
+	  text-align: left;
+    }
+    .featurette-image {
+      margin-top: -120px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
+    }
+
+    /* Give some space on the sides of the floated elements so text doesn't run right into it. */
+    .featurette-image.pull-left {
+      margin-right: 40px;
+    }
+    .featurette-image.pull-right {
+      margin-left: 40px;
+    }
+
+    /* Thin out the marketing headings */
+    .featurette-heading {
+      font-size: 50px;
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -1px;
+	  margin-bottom: 60px !important;
+    }
+	
+	.thumbnail > img {
+	  margin: 0 auto;
+	}
+
+
+
+    /* RESPONSIVE CSS
+    -------------------------------------------------- */
+
+    @media (max-width: 979px) {
+
+		.navbar-wrapper {
+          position: relative;
+		  margin-top: 20px;
+		}
+
+      .container.navbar-wrapper {
+        margin-bottom: 0;
+        width: auto;
+      }
+      .navbar-inner {
+        border-radius: 0;
+        margin: -20px 0;
+      }
+
+      .featurette {
+        height: auto;
+        padding: 0;
+      }
+      .featurette-image.pull-left,
+      .featurette-image.pull-right {
+        display: block;
+        float: none;
+        max-width: 40%;
+        margin: 0 auto 20px;
+      }
+    }
+
+
+    @media (max-width: 767px) {
+
+      .navbar-inner {
+        margin: -20px;
+      }
+
+      .marketing .span4 + .span4 {
+        margin-top: 40px;
+      }
+
+      .featurette-heading {
+        font-size: 30px;
+      }
+      .featurette .lead {
+        font-size: 18px;
+        line-height: 1.5;
+      }
+
+    }
+	
+	
+	html.win .ilightbox-noscroll, html.win .ilightbox-noscroll .navbar-wrapper {
+		padding-right: 17px;
+	}
+	
+	html.linux .ilightbox-noscroll, html.linux .ilightbox-noscroll .navbar-wrapper {
+		padding-right: 13px;
+	}
+    </style>
+	<!--[if IE 7]>
+    <style>
+	.jumbotron {
+	  background: #47263C url(assets/img/bs-docs-masthead-pattern.png) repeat center center;
+	  filter: none;
+	}
+	
+    .navbar-wrapper {
+      width: 100%;
+    }
+    </style>
+	<![endif]-->
+	
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+  </head>
+
+  <body data-spy="scroll" data-target=".navbar">
+
+
+
+    <!-- NAVBAR
+    ================================================== -->
+    <!-- Wrap the .navbar in .container to center it on the page and provide easy way to target it with .navbar-wrapper. -->
+    <div class="container navbar-wrapper">
+
+      <div class="navbar navbar-inverse">
+        <div class="navbar-inner">
+          <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://ilightbox.net/">iLightBox</a>
+          <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Images <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="index.html#singleimage">Single Image</a></li>
+                  <li><a href="index.html#imagegallery">Image Gallery</a></li>
+                  <li><a href="index.html#deeplinking_looping">Deeplinking & Infinite</a></li>
+                  <li><a href="index.html#advanced_images">Advanced Examples</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">HTML <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="index.html#html_inline_content">Inline Content</a></li>
+                  <li><a href="index.html#html_ajax">Ajax</a></li>
+                  <li><a href="index.html#html_flash">Flash / SWF</a></li>
+                  <li><a href="index.html#html_iframe">IFRAME</a></li>
+                  <li><a href="index.html#html_advanced_examples">Advanced Examples</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Videos <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="index.html#video_simple">Simple Usage</a></li>
+                  <li><a href="index.html#video_advanced_examples">Advanced Examples</a></li>
+                </ul>
+              </li>
+              <li class="dropdown active">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Advanced Examples <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="index.html#advanced_mixed">Mixed Contents & Google Maps via API</a></li>
+                  <li><a href="index.html#advanced_events">Events</a></li>
+                  <li><a href="index.html#galley_with_slideshow">Image Gallery with Slideshow</a></li>
+                  <li><a href="index.html#advanced_dialogues">Alert/Confirm/Prompt</a></li>
+                  <li><a href="plus_comment.html">Image Preview + Sidebar</a></li>
+                  <li class="active"><a href="infinite_scroll.html">Infinite Scroll Gallery</a></li>
+                  <li><a href="responsive_slider.html">Responsive Slider!</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Support <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="http://ilightbox.net/discussion.html">Discussion</a></li>
+                  <li><a href="http://ilightbox.net/faq.html">Frequently Asked Questions</a></li>
+                  <li><a href="http://ilightbox.net/changelog.html">Changelog</a></li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="nav pull-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
+                <ul class="dropdown-menu" id="projects_container">
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!-- /.navbar-inner -->
+      </div><!-- /.navbar -->
+
+    </div><!-- /.container -->
+
+<div class="jumbotron subhead">
+  <div class="container">
+    <a href="http://goo.gl/nl0Bg" class="btn btn-primary btn-large pull-right">Download iLightBox&nbsp;&nbsp;<i class="icon-download-alt icon-white"></i></a>
+    <h1>iLightBox</h1>
+  </div>
+</div>
+
+<div class="bs-docs-social">
+  <div class="container">
+    <ul class="bs-docs-social-buttons">
+      <li>
+        <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Filightbox.net%2F&amp;send=false&amp;layout=button_count&amp;width=150&amp;show_faces=true&amp;font&amp;colorscheme=light&amp;action=recommend&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:150px; height:21px;" allowTransparency="true"></iframe>
+      </li>
+      <li>
+        <div class="g-plusone" data-size="medium" data-href="http://ilightbox.net/"></div>
+      </li>
+      <li class="follow-btn">
+        <a href="https://twitter.com/chawroka" class="twitter-follow-button" data-link-color="#0069D6" data-show-count="true">Follow @chawroka</a>
+      </li>
+      <li class="tweet-btn">
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://ilightbox.net/" data-count="horizontal" data-via="chawroka" data-related="@chawroka:iLightBox - Revolutionary Lightbox for creative and ambitious web designers and developers.">Tweet</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+<div class="container marketing">
+<br>
+<br>
+      <!-- START THE FEATURETTES -->
+
+      <div class="featurette">
+        <h2 class="featurette-heading">Advanced Examples <span class="muted">&middot; Infinite Scroll Gallery</span></h2>
+		<p class="marketing-byline left">Here we use methods to create Infinite Scroll Gallery.</p>
+			<ul class="thumbnails" id="infinite_scroll">
+              <li class="span3">
+                <a href="assets/img/photos/lost_in_the_world_by_vhm_alex-d5mbdg7.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/lost_in_the_world_by_vhm_alex-d5mbdg7.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/lost_in_the_world_by_vhm_alex-d5mbdg7.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/princess_of_china_by_vhm_alex-d5gu1a2.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/princess_of_china_by_vhm_alex-d5gu1a2.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/princess_of_china_by_vhm_alex-d5gu1a2.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/shame_by_vhm_alex-d58ipnj.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/shame_by_vhm_alex-d58ipnj.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/shame_by_vhm_alex-d58ipnj.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/love_will_tear_us_apart_by_vhm_alex-d4tqff9.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/love_will_tear_us_apart_by_vhm_alex-d4tqff9.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/love_will_tear_us_apart_by_vhm_alex-d4tqff9.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/MS-test-day-27898.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/MS-test-day-27898.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/MS-test-day-27898.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/MS-test-day-27771.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/MS-test-day-27771.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/MS-test-day-27771.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/MS-test-day-27845.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/MS-test-day-27845.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/MS-test-day-27845.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/MS-test-day-27780.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/MS-test-day-27780.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/MS-test-day-27780.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/MS-test-day-278081.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/MS-test-day-278081.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/MS-test-day-278081.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/MS-test-day-27749.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/MS-test-day-27749.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/MS-test-day-27749.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="http://vimeo.com/55331511" class="thumbnail" data-options="smartRecognition: true">
+                  <img src="assets/img/thumbnails/infinite_scroll/382910812_1280.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/challenger_by_nikosalpha-d5mgk3u.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/challenger_by_nikosalpha-d5mgk3u.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/challenger_by_nikosalpha-d5mgk3u.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/catharine_by_nikosalpha-d5drzr1.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/catharine_by_nikosalpha-d5drzr1.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/catharine_by_nikosalpha-d5drzr1.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/underexposed_by_nikosalpha.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/underexposed_by_nikosalpha.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/underexposed_by_nikosalpha.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/auric_by_nikosalpha-d4ymtor.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/auric_by_nikosalpha-d4ymtor.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/auric_by_nikosalpha-d4ymtor.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/blonde_by_nikosalpha-d5hk45h.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/blonde_by_nikosalpha-d5hk45h.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/blonde_by_nikosalpha-d5hk45h.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/piece_by_nikosalpha-d3bc2cc.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/piece_by_nikosalpha-d3bc2cc.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/piece_by_nikosalpha-d3bc2cc.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="http://www.youtube.com/v/uuwfgXD8qV8?autohide=1&amp;version=3" class="thumbnail" data-type="flash" data-options="thumbnail: 'http://i2.ytimg.com/vi/uuwfgXD8qV8/mqdefault.jpg', width: 1920, height: 1080">
+                  <img src="assets/img/thumbnails/infinite_scroll/katy_perry_part_of_me.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/caesarlima/319_1caenewpg2.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/319_1caenewpg2.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/319_1caenewpg2.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/caesarlima/350_1r3__2007__caesarlima_seb8mag3.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/350_1r3__2007__caesarlima_seb8mag3.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/350_1r3__2007__caesarlima_seb8mag3.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/caesarlima/397_1natascha_wind.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/397_1natascha_wind.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/397_1natascha_wind.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/caesarlima/452_1npblonde.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/452_1npblonde.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/452_1npblonde.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/caesarlima/481_1cae_shadow.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/481_1cae_shadow.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/481_1cae_shadow.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/caesarlima/489_1zokvamp_beauty.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/489_1zokvamp_beauty.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/489_1zokvamp_beauty.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/caesarlima/583_1testsnowwhite.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/583_1testsnowwhite.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/583_1testsnowwhite.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/caesarlima/585_1DawnO_056casei.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/585_1DawnO_056casei.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/585_1DawnO_056casei.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/caesarlima/592_1r388_yb_banner.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/592_1r388_yb_banner.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/592_1r388_yb_banner.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/caesarlima/599_1nero_splash_1.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/599_1nero_splash_1.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/599_1nero_splash_1.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/caesarlima/601_1beauty1.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/601_1beauty1.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/601_1beauty1.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/caesarlima/603_1beauty4.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/603_1beauty4.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/603_1beauty4.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/caesarlima/604_1beauty3.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/604_1beauty3.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/604_1beauty3.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/caesarlima/618_1marilia_splash.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/618_1marilia_splash.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/618_1marilia_splash.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/caesarlima/625_1beautykaetsite.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/625_1beautykaetsite.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/625_1beautykaetsite.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a href="assets/img/photos/caesarlima/631_1steampunksplash4.jpg" class="thumbnail" data-options="thumbnail: 'assets/img/thumbnails/infinite_scroll/631_1steampunksplash4.jpg'">
+                  <img src="assets/img/thumbnails/infinite_scroll/631_1steampunksplash4.jpg">
+                </a>
+              </li>
+            </ul>
+      </div>
+	  
+	  <code><strong>&nbsp;&nbsp;&nbsp;&nbsp; The End &nbsp;&nbsp;&nbsp;&nbsp;</strong></code>
+
+      <!-- /END THE FEATURETTES -->
+
+
+      <hr class="featurette-divider" id="last_divider">
+
+      <!-- FOOTER -->
+      <footer>
+        <p class="pull-right"><a href="#home">Back to top</a></p>
+        <p align="left">&copy; 2012 <a href="http://iprodev.com/">Hemn Chawroka</a>.</p>
+      </footer>
+
+    </div><!-- /.container -->
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	<script type="text/javascript" src="assets/js/css_browser_selector.min.js"></script>
+	<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/jquery.requestAnimationFrame.js"></script>
+	<script type="text/javascript" async defer src="http://iprodev.com/projects.php?p=ilightbox"></script>
+    <script src="src/js/jquery.mousewheel.js"></script>
+    <script src="src/js/ilightbox.packed.js"></script>
+    <script src="assets/js/bootstrap-dropdown.js"></script>
+    <script src="assets/js/bootstrap-tooltip.js"></script>
+    <script src="assets/js/bootstrap-popover.js"></script>
+    <script src="assets/js/bootstrap-collapse.js"></script>
+    <script src="assets/js/jquery.isotope.min.js"></script>
+    <script>
+	$(document).ready(function(){
+
+	  var $container = $('ul#infinite_scroll'),
+	  old = $('li', $container),
+	  api = $('ul#infinite_scroll li a').iLightBox(),
+	  pages = 4;
+
+	  $container.isotope({
+		itemSelector : 'li'
+	  });
+	  
+	  $(document).bind('scroll', function(){
+		var t = $(this),
+		last = $('#last_divider').offset(),
+		scroll = t.scrollTop() + $(window).height();
+
+		if(scroll >= (last.top-200) && pages >= 1) {
+			var newElements = old.clone();
+			newElements.appendTo($container);
+			refresh(newElements);
+			pages--;
+		}
+	  });
+	  
+	  $(window).bind('resize load', function(){
+	    $container.isotope( 'reLayout' ); 
+	  });
+	  
+	  function refresh(newElements){
+		api.refresh();
+		$container.isotope( 'appended', $( newElements ) ); 
+	  }
+	  
+
+	});
+  
+	window.___gcfg = {lang: "en"};
+	(function() {
+		var po = document.createElement("script"); po.type = "text/javascript"; po.async = true;
+		po.src = "https://apis.google.com/js/plusone.js";
+		var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(po, s);
+	})();
+    </script>
+  </body>
+</html>

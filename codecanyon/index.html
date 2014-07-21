@@ -1,0 +1,2068 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>iLightBox &middot; Revolutionary Lightbox Plugin</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="Hemn Chawroka" />
+
+    <!-- Le styles -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="assets/css/docs.css" rel="stylesheet" />
+    <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet" />
+    <link href="assets/css/demo_ajax_stevejobs.css" rel="stylesheet" />
+    <link href="src/css/ilightbox.css" rel="stylesheet" />
+    <style>
+
+    /* GLOBAL STYLES
+    -------------------------------------------------- */
+    /* Padding below the footer and lighter body text */
+
+    body {
+      padding-top: 0;
+      padding-bottom: 40px;
+      color: #5a5a5a;
+    }
+	
+	.jumbotron {
+	  background: #793e3a; /* Old browsers */
+	  background: -moz-linear-gradient(45deg,  #793e3a 0%, #170f3e 100%); /* FF3.6+ */
+	  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#793e3a), color-stop(100%,#170f3e)); /* Chrome,Safari4+ */
+	  background: -webkit-linear-gradient(45deg,  #793e3a 0%,#170f3e 100%); /* Chrome10+,Safari5.1+ */
+	  background: -o-linear-gradient(45deg,  #793e3a 0%,#170f3e 100%); /* Opera 11.10+ */
+	  background: -ms-linear-gradient(45deg,  #793e3a 0%,#170f3e 100%); /* IE10+ */
+	  background: linear-gradient(45deg,  #793e3a 0%,#170f3e 100%); /* W3C */
+	  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#793e3a', endColorstr='#170f3e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	}
+	
+	.masthead .btn {
+	  padding: 11px 19px;
+	}
+	
+	.masthead .btn [class^="icon-"] {
+	  margin-top: 7px;
+	}
+
+
+
+    /* CUSTOMIZE THE NAVBAR
+    -------------------------------------------------- */
+
+    /* Special class on .container surrounding .navbar, used for positioning it into place. */
+    .navbar-wrapper {
+      position: fixed;
+      z-index: 1035;
+	  top: 0;
+	  left: 0;
+	  right: 0;
+    }
+
+    .navbar  {
+      margin-bottom: 0;
+    }
+
+    /* Remove border and change up box shadow for more contrast */
+    .navbar .navbar-inner {
+      border: 0;
+      -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.5);
+         -moz-box-shadow: 0 2px 10px rgba(0,0,0,.5);
+              box-shadow: 0 2px 10px rgba(0,0,0,.5);
+			  
+      -webkit-border-radius: 0 0 4px 4px;
+         -moz-border-radius: 0 0 4px 4px;
+              border-radius: 0 0 4px 4px;
+    }
+
+    /* Downsize the brand/project name a bit */
+    .navbar .brand {
+      padding: 14px 20px 16px; /* Increase vertical padding to match navbar links */
+      font-size: 16px;
+      font-weight: bold;
+      text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+    }
+
+    /* Navbar links: increase padding for taller navbar */
+    .navbar .nav > li > a {
+      padding: 15px 20px;
+    }
+
+    /* Offset the responsive button for proper vertical alignment */
+    .navbar .btn-navbar {
+      margin-top: 10px;
+    }
+
+
+
+    /* CUSTOMIZE THE NAVBAR
+    -------------------------------------------------- */
+	.masthead {
+		padding-top: 110px;
+		padding-bottom: 60px;
+	}
+
+
+
+    /* MARKETING CONTENT
+    -------------------------------------------------- */
+
+    /* Center align the text within the three columns below the carousel */
+    .marketing .span4, .marketing .span4 p, .marketing .marketing-byline {
+      text-align: center;
+    }
+	.marketing .marketing-byline.left {
+	  text-align: left;
+      margin-top: -50px;
+    }
+    .marketing h2 {
+      font-weight: normal;
+    }
+	.marketing p, .hero-unit {
+	  text-align: left;
+	}
+
+
+    /* Featurettes
+    ------------------------- */
+
+    .featurette-divider {
+      margin: 80px 0; /* Space out the Bootstrap <hr> more */
+    }
+    .featurette {
+      overflow: hidden; /* Vertically center images part 2: clear their floats. */
+	  text-align: left;
+    }
+    .featurette-image {
+      margin-top: -120px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
+    }
+
+    /* Give some space on the sides of the floated elements so text doesn't run right into it. */
+    .featurette-image.pull-left {
+      margin-right: 40px;
+    }
+    .featurette-image.pull-right {
+      margin-left: 40px;
+    }
+
+    /* Thin out the marketing headings */
+    .featurette-heading {
+      font-size: 50px;
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -1px;
+	  margin-bottom: 60px !important;
+    }
+	
+	.thumbnail > img {
+	  margin: 0 auto;
+	}
+
+
+
+    /* RESPONSIVE CSS
+    -------------------------------------------------- */
+
+    @media (max-width: 979px) {
+
+		.navbar-wrapper {
+          position: relative;
+		  margin-top: 20px;
+		}
+
+      .container.navbar-wrapper {
+        margin-bottom: 0;
+        width: auto;
+      }
+      .navbar-inner {
+        border-radius: 0;
+        margin: -20px 0;
+      }
+
+      .featurette {
+        height: auto;
+        padding: 0;
+      }
+      .featurette-image.pull-left,
+      .featurette-image.pull-right {
+        display: block;
+        float: none;
+        max-width: 40%;
+        margin: 0 auto 20px;
+      }
+    }
+
+
+    @media (max-width: 767px) {
+
+      .navbar-inner {
+        margin: -20px;
+      }
+
+      .marketing .span4 + .span4 {
+        margin-top: 40px;
+      }
+
+      .featurette-heading {
+        font-size: 30px;
+      }
+      .featurette .lead {
+        font-size: 18px;
+        line-height: 1.5;
+      }
+
+    }
+	
+	div.center {
+		width: 450px;
+		height: 260px;
+		text-align: center;
+	}
+	
+	div.center h2 {
+		display: block;
+		margin: 0;
+	}
+	
+	div.center h2 img {
+		display: block;
+		margin: 0 auto;
+		padding: 20px;
+	}
+	
+	.ilightbox-dialogue .ilightbox-container, .ilightbox-dialogue .ilightbox-inner-toolbar {
+		width: auto !important;
+		height: auto !important;
+	}
+	
+	.dialogue {
+		min-width: 200px;
+		max-width: 600px;
+		max-height: 400px;
+		padding: 20px;
+		padding-top: 20px;
+	}
+	
+	.dialogue .btn {
+		float: right;
+		padding-right: 20px;
+		padding-left: 20px;
+		margin-left: 10px;
+		margin-top: 10px;
+	}
+	
+	/* Slidshow button styles */
+	a.slideshow_button {
+		display: none;
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: 35px;
+		padding: 14px 30px;
+		margin: auto;
+		cursor: pointer;
+		font-size: 22px;
+		z-index: 100001;
+		width: 140px;
+	}
+	
+	html.win .ilightbox-noscroll, html.win .ilightbox-noscroll .navbar-wrapper {
+		padding-right: 17px;
+	}
+	
+	html.linux .ilightbox-noscroll, html.linux .ilightbox-noscroll .navbar-wrapper {
+		padding-right: 13px;
+	}
+    </style>
+	<!--[if IE 7]>
+    <style>
+	.jumbotron {
+	  background: #47263C url(assets/img/bs-docs-masthead-pattern.png) repeat center center;
+	  filter: none;
+	}
+	
+    .navbar-wrapper {
+      width: 100%;
+    }
+    </style>
+	<![endif]-->
+	
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+
+  <body data-spy="scroll" data-target=".navbar">
+
+
+
+    <!-- NAVBAR
+    ================================================== -->
+    <!-- Wrap the .navbar in .container to center it on the page and provide easy way to target it with .navbar-wrapper. -->
+    <div class="container navbar-wrapper">
+
+      <div class="navbar navbar-inverse">
+        <div class="navbar-inner">
+          <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://ilightbox.net/">iLightBox</a>
+          <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li style="display: none;"><a href="#home">Home</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Images <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#singleimage">Single Image</a></li>
+                  <li><a href="#imagegallery">Image Gallery</a></li>
+                  <li><a href="#deeplinking_looping">Deeplinking & Infinite</a></li>
+                  <li><a href="#advanced_images">Advanced Examples</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">HTML <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#html_inline_content">Inline Content</a></li>
+                  <li><a href="#html_ajax">Ajax</a></li>
+                  <li><a href="#html_flash">Flash / SWF</a></li>
+                  <li><a href="#html_iframe">IFRAME</a></li>
+                  <li><a href="#html_advanced_examples">Advanced Examples</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Videos <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#video_simple">Simple Usage</a></li>
+                  <li><a href="#video_advanced_examples">Advanced Examples</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Advanced Examples <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#advanced_mixed">Mixed Contents & Google Maps via API</a></li>
+                  <li><a href="#advanced_events">Events</a></li>
+                  <li><a href="#galley_with_slideshow">Image Gallery with Slideshow</a></li>
+                  <li><a href="#advanced_dialogues">Alert/Confirm/Prompt</a></li>
+                  <li><a href="plus_comment.html">Image Preview + Sidebar</a></li>
+                  <li><a href="infinite_scroll.html">Infinite Scroll Gallery</a></li>
+                  <li><a href="responsive_slider.html">Responsive Slider!</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Support <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="http://ilightbox.net/discussion.html">Discussion</a></li>
+                  <li><a href="http://ilightbox.net/faq.html">Frequently Asked Questions</a></li>
+                  <li><a href="http://ilightbox.net/changelog.html">Changelog</a></li>
+                </ul>
+              </li>
+              <li><a href="http://ilightbox.net/documentation.html">Docs</a></li>
+            </ul>
+            <ul class="nav pull-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
+                <ul class="dropdown-menu" id="projects_container">
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!-- /.navbar-inner -->
+      </div><!-- /.navbar -->
+
+    </div><!-- /.container -->
+
+<div class="jumbotron masthead" id="home">
+  <div class="container">
+    <h1>iLightBox</h1>
+    <p>Sleek, smooth, powerful, and revolutionary jQuery lightbox plugin for creative and ambitious web designers and developers.</p>
+    <p>
+      <a href="http://ilightbox.net/documentation.html" class="btn btn-info btn-large">Documentation&nbsp;&nbsp;<i class="icon-book icon-white"></i></a>
+      <a href="http://ilightbox.net/discussion.html" class="btn btn-success btn-large">Discussion&nbsp;&nbsp;<i class="icon-comment icon-white"></i></a>
+    </p>
+    <ul class="masthead-links">
+      <li>
+        Version 2.1.5
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="bs-docs-social">
+  <div class="container">
+    <ul class="bs-docs-social-buttons">
+      <li>
+        <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Filightbox.net%2F&amp;send=false&amp;layout=button_count&amp;width=150&amp;show_faces=true&amp;font&amp;colorscheme=light&amp;action=recommend&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:150px; height:21px;" allowTransparency="true"></iframe>
+      </li>
+      <li>
+        <div class="g-plusone" data-size="medium" data-href="http://ilightbox.net/"></div>
+      </li>
+      <li class="follow-btn">
+        <a href="https://twitter.com/chawroka" class="twitter-follow-button" data-link-color="#0069D6" data-show-count="true">Follow @chawroka</a>
+      </li>
+      <li class="tweet-btn">
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://ilightbox.net/" data-count="horizontal" data-via="chawroka" data-related="@chawroka:iLightBox - Revolutionary Lightbox for creative and ambitious web designers and developers.">Tweet</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+<div class="container marketing">
+
+
+    <h1>Introducing iLightBox</h1>
+    <p class="marketing-byline">Need reasons to love iLightBox? Look no further.</p>
+
+    <div class="row-fluid">
+      <div class="span4">
+        <img src="assets/img/cross-browser.png">
+        <h2>Browser support</h2>
+        <p align="center">IE7+ (including IE10), Firefox, Safari, Opera, Chrome, IOS4+, and Android are supported.</p>
+      </div>
+      <div class="span4">
+        <img src="assets/img/bs-docs-responsive-illustrations.png">
+        <h2>Made for everyone.</h2>
+        <p align="center">iLightBox was made to not only look and behave great in the latest desktop browsers (as well as IE7!), but in tablet and smartphone browsers as well.</p>
+      </div>
+      <div class="span4">
+        <img src="assets/img/bs-docs-bootstrap-features.png">
+        <h2>Packed with features.</h2>
+        <p align="center">To make things even more awesome iLightBox comes with fullscreen, retina-ready skins, supports for swipe events, Youtube and Vimeo integration for HTML5 video, powerful Javascript API and has lifetime free support and updates.</p>
+      </div>
+    </div>
+
+      <hr class="featurette-divider">
+	
+	<div class="hero-unit">
+	  IF YOU HAVE ANY QUESTION THAT ARE BEYOND THE SCOPE OF THE ILIGHTBOX, PLEASE FEEL FREE TO <a href="http://ilightbox.net/discussion.html">JOIN THE DISCUSSION</a> OR <a href="http://codecanyon.net/user/hemn?ref=hemn">EMAIL ME VIA MY USER PAGE CONTACT FORM</a>. THANKS SO MUCH!
+	</div>
+
+
+
+      <!-- START THE FEATURETTES -->
+
+      <hr class="featurette-divider" id="singleimage">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">IMAGES <span class="muted">&middot; Single Image</span></h2>
+		<p class="marketing-byline left">Here we use default settings and default styles for single image preview.</p>
+			<ul class="thumbnails">
+              <li class="span3">
+                <a id="singleimage_1" href="assets/img/photos/lost_in_the_world_by_vhm_alex-d5mbdg7.jpg" class="thumbnail" data-caption="I'm lost in the world, I'm down on my mind, I'm building a city, And I'm down for the night.">
+                  <img src="assets/img/thumbnails/lost_in_the_world_by_vhm_alex-d5mbdg7.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a id="singleimage_2" href="assets/img/photos/princess_of_china_by_vhm_alex-d5gu1a2.jpg" class="thumbnail" data-caption="You really hurt me.">
+                  <img src="assets/img/thumbnails/princess_of_china_by_vhm_alex-d5gu1a2.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a id="singleimage_3" href="assets/img/photos/shame_by_vhm_alex-d58ipnj.jpg" class="thumbnail" data-caption="An interpretation of Michael Fassbender as Brandon, a sex addict in director Steve McQueen's 2011 film <i>Shame</i>.">
+                  <img src="assets/img/thumbnails/shame_by_vhm_alex-d58ipnj.jpg">
+                </a>
+              </li>
+              <li class="span3">
+                <a id="singleimage_4" href="assets/img/photos/love_will_tear_us_apart_by_vhm_alex-d4tqff9.jpg" class="thumbnail">
+                  <img src="assets/img/thumbnails/love_will_tear_us_apart_by_vhm_alex-d4tqff9.jpg">
+                </a>
+              </li>
+            </ul>
+      </div>
+	  
+	  <div class="alert alert-info" align="left">
+	    Pictures by <a href="http://vhm-alex.deviantart.com/" target="_blank"><b>vhm-Alex</b></a>
+	  </div>
+
+      <hr class="featurette-divider" id="imagegallery">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">IMAGES <span class="muted">&middot; Image Gallery</span></h2>
+        <p class="marketing-byline left">Here we use default settings and customize skin for some pictures in image gallery preview.</p>
+	  
+		  <ul class="thumbnails" id="image_gallery">
+			<li class="span5">
+			  <a href="assets/img/photos/challenger_by_nikosalpha-d5mgk3u.jpg" data-options="thumbnail: 'assets/img/thumbnails/challenger_by_nikosalpha-d5mgk3u.jpg'" class="thumbnail" data-caption="Presenting Tonia Sotiropoulou, in a new 2012 shooting. Tonia is currently in the big screen with James Bond's Skyfall. This photo is a sample for magazine use, more photos will follow in the future. See previous work with her at <a href='http://nikosalpha.com/tonia'>nikosalpha.com/tonia</a>.">
+				<img src="assets/img/thumbnails/challenger_by_nikosalpha-d5mgk3u.jpg">
+			  </a>
+			</li>
+			<li class="span2">
+			  <a href="assets/img/photos/catharine_by_nikosalpha-d5drzr1.jpg" data-options="thumbnail: 'assets/img/thumbnails/catharine_by_nikosalpha-d5drzr1.jpg'" class="thumbnail" data-caption="Presenting Catharine. She is a young multitalented beautiful voice singing in the UK. Follow her work <a href='https://www.facebook.com/CatharineAmorosoMusic'>here</a>">
+				<img src="assets/img/thumbnails/catharine_by_nikosalpha-d5drzr1.jpg">
+			  </a>
+			</li>
+			<li class="span3">
+			  <a href="assets/img/photos/underexposed_by_nikosalpha.jpg" data-options="thumbnail: 'assets/img/thumbnails/underexposed_by_nikosalpha.jpg'" class="thumbnail">
+				<img src="assets/img/thumbnails/underexposed_by_nikosalpha.jpg">
+			  </a>
+			</li>
+			<li class="span2 pull-right">
+			  <a href="assets/img/photos/auric_by_nikosalpha-d4ymtor.jpg" data-options="thumbnail: 'assets/img/thumbnails/auric_by_nikosalpha-d4ymtor.jpg', skin: 'light'" class="thumbnail" data-caption="One more photo of one of my favorite subjects, the Lips. I decided to create a unique tag in my website only for them. Here they are so far: <a href='http://nikosalpha.com/lips'>nikosalpha.com/lips</a>.">
+				<img src="assets/img/thumbnails/auric_by_nikosalpha-d4ymtor.jpg">
+			  </a>
+			</li>
+			<li class="span3">
+			  <a href="assets/img/photos/piece_by_nikosalpha-d3bc2cc.jpg" data-options="thumbnail: 'assets/img/thumbnails/piece_by_nikosalpha-d3bc2cc.jpg'" class="thumbnail" data-caption="The sweetest piece of my life">
+				<img src="assets/img/thumbnails/piece_by_nikosalpha-d3bc2cc.jpg">
+			  </a>
+			</li>
+			<li class="span2">
+			  <a href="assets/img/photos/blonde_by_nikosalpha-d5hk45h.jpg" data-options="thumbnail: 'assets/img/thumbnails/blonde_by_nikosalpha-d5hk45h.jpg'" class="thumbnail" data-caption="New session with the singer Valerie Kalenti! (:">
+				<img src="assets/img/thumbnails/blonde_by_nikosalpha-d5hk45h.jpg">
+			  </a>
+			</li>
+		  </ul>
+      </div>
+	  
+	  <div class="alert alert-info" align="left">
+	    Pictures by <a href="http://nikosalpha.com" target="_blank">nikos<b>vasilakis</b></a>
+	  </div>
+
+      <hr class="featurette-divider" id="deeplinking_looping">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">IMAGES <span class="muted">&middot; Deeplinking & Infinite</span></h2>
+        <p class="marketing-byline left">In this case iLightBox allow photos will be available for next references via URL and infinite the gallery.</p>
+	  
+		  <ul class="thumbnails" id="deeplinking_looping_gallery">
+			<li class="span2">
+			  <a href="assets/img/photos/music/01-G-Unit.jpg" class="thumbnail">
+				<img src="assets/img/thumbnails/music/01-G-Unit.jpg">
+			  </a>
+			</li>
+			<li class="span2">
+			  <a href="assets/img/photos/music/02-G-Unit.jpg" class="thumbnail">
+				<img src="assets/img/thumbnails/music/02-G-Unit.jpg">
+			  </a>
+			</li>
+			<li class="span2">
+			  <a href="assets/img/photos/music/03-G-Unit.jpg" class="thumbnail">
+				<img src="assets/img/thumbnails/music/03-G-Unit.jpg">
+			  </a>
+			</li>
+			<li class="span2">
+			  <a href="assets/img/photos/music/04-G-Unit.jpg" class="thumbnail">
+				<img src="assets/img/thumbnails/music/04-G-Unit.jpg">
+			  </a>
+			</li>
+			<li class="span2">
+			  <a href="assets/img/photos/music/07-Three-6-Mafia.jpg" class="thumbnail">
+				<img src="assets/img/thumbnails/music/07-Three-6-Mafia.jpg">
+			  </a>
+			</li>
+			<li class="span2">
+			  <a href="assets/img/photos/music/08-Three-6-Mafia.jpg" class="thumbnail">
+				<img src="assets/img/thumbnails/music/08-Three-6-Mafia.jpg">
+			  </a>
+			</li>
+			<li class="span2">
+			  <a href="assets/img/photos/music/09-Three-6-Mafia.jpg" class="thumbnail">
+				<img src="assets/img/thumbnails/music/09-Three-6-Mafia.jpg">
+			  </a>
+			</li>
+			<li class="span2">
+			  <a href="assets/img/photos/music/10-Chris-Brown.jpg" class="thumbnail">
+				<img src="assets/img/thumbnails/music/10-Chris-Brown.jpg">
+			  </a>
+			</li>
+			<li class="span2">
+			  <a href="assets/img/photos/music/11-Chris-Brown.jpg" class="thumbnail">
+				<img src="assets/img/thumbnails/music/11-Chris-Brown.jpg">
+			  </a>
+			</li>
+			<li class="span2">
+			  <a href="assets/img/photos/music/13-Gym-Class-Heroes.jpg" class="thumbnail">
+				<img src="assets/img/thumbnails/music/13-Gym-Class-Heroes.jpg">
+			  </a>
+			</li>
+			<li class="span2">
+			  <a href="assets/img/photos/music/16-3OH!3.jpg" class="thumbnail">
+				<img src="assets/img/thumbnails/music/16-3OH!3.jpg">
+			  </a>
+			</li>
+			<li class="span2">
+			  <a href="assets/img/photos/music/17-3OH!3.jpg" class="thumbnail">
+				<img src="assets/img/thumbnails/music/17-3OH!3.jpg">
+			  </a>
+			</li>
+		  </ul>
+      </div>
+	  
+	  <div class="alert alert-info" align="left">
+		Pictures by <a href="http://www.davehillphoto.com/music/" target="_blank"><b>DAVE HILL</b></a>
+	  </div>
+
+      <hr class="featurette-divider" id="advanced_images">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">IMAGES <span class="muted">&middot; Advanced Examples</span></h2>
+        <p class="marketing-byline left">Here we use custom settings and advanced options for making advanced previews.</p>
+		
+		<ul class="thumbnails advanced-images">
+		  <li class="span4">
+			  <a href="#" id="inline_gallery" class="thumbnail"><img src="assets/img/thumbnails/599_1nero_splash_1.jpg"></a>
+			  <div class="caption">
+				<h3>Inline Image Gallery</h3>
+				<p>An image Gallery with a single click and some customization like: skin, path, startFrom, ...</p>
+			  </div>
+	  
+			  <div class="alert alert-info" align="left">
+				Pictures by <a href="http://www.caesarlima.com/#mi=2&pt=1&pi=10000&s=0&p=1&a=0&at=0" target="_blank"><b>caesarlima</b></a>
+			  </div>
+		  </li>
+		  <li class="span4">
+			  <a id="forceresize" href="http://www.caesarlima.com/#mi=2&pt=1&pi=10000&s=7&p=2&a=0&at=0" photo="assets/img/photos/caesarlima/481_1cae_shadow.jpg" data-options="width:400, width:400" target="_blank" class="thumbnail"><img src="assets/img/thumbnails/481_1cae_shadow.jpg"></a>
+			  <div class="caption">
+				<h3>Force Size & Custom Attribute</h3>
+				<p>A single image via custom attribute, force size and some customization like: skin, ...</p>
+			  </div>
+	  
+			  <div class="alert alert-info" align="left">
+				Picture by <a href="http://www.caesarlima.com/#mi=2&pt=1&pi=10000&s=7&p=2&a=0&at=0" target="_blank"><b>caesarlima</b></a>
+			  </div>
+		  </li>
+		  <li class="span4">
+			  <a id="open_in_modal" href="http://marcuseriksson.net/c/s/ski/" target="_blank" class="thumbnail"><img src="assets/img/thumbnails/MS-test-day-27749.jpg"></a>
+			  <div class="caption">
+				<h3>Open in Modal</h3>
+				<p>Toggle if <code>clicking the overlay</code> or <code>press "Esc"</code> key shouldn't close iLightBox.</p>
+			  </div>
+	  
+			  <div class="alert alert-info" align="left">
+				Pictures by <a href="http://marcuseriksson.net/" target="_blank"><b>MARCUS ERIKSSON</b></a>
+			  </div>
+		  </li>
+		  <li class="span4">
+			  <a id="image_recognizer" href="#" target="_blank" class="thumbnail"><img src="assets/img/thumbnails/advanced_thumbnail.jpg"></a>
+			  <div class="caption">
+				<h3>Auto recognition</h3>
+				<p>In this case iLightBox auto recognize images from image sharing sites e.g. <code>flickr, instagram, deviantArt, ...</code> and captions and social buttons only appear when mouseover on images.</p>
+			  </div>
+		  </li>
+		  <li class="span4">
+			  <a id="cycling_arrows" href="#" target="_blank" class="thumbnail"><img src="assets/img/thumbnails/challenger_by_nikosalpha-d5mgk3u.jpg"></a>
+			  <div class="caption">
+				<h3>Auto cycling & Arrows</h3>
+				<p>In this example iLightBox auto cycling images and the arrow buttons will be available for better control over changing images.</p>
+			  </div>
+	  
+			  <div class="alert alert-info" align="left">
+				Pictures by <a href="http://nikosalpha.com" target="_blank">nikos<b>vasilakis</b></a>
+			  </div>
+		  </li>
+		</ul>
+
+      </div>
+
+      <hr class="featurette-divider" id="html_inline_content">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">HTML <span class="muted">&middot; Inline Content</span></h2>
+        <p class="lead"></p>
+			<style>
+				#demo_inline_element h1 {
+					font-size: 19px;
+					text-transform: uppercase;
+					margin: 0;
+					margin-bottom: 10px;
+					line-height:100%;
+					font-weight: 200;
+					letter-spacing: -1px;
+				}
+				#demo_inline_element h1 span {
+					display: block;
+					font-size: 12px;
+					line-height:100%;
+				}
+				#demo_inline_element div.span7 {
+					font-size: 0px;
+					line-height:0%;
+				}
+				#demo_inline_element p {
+					font-size: smaller;
+					line-height:150%;
+				}
+			</style>
+			  <div class="well" style="margin: 20px auto;">
+				<div class="row-fluid" id="demo_inline_element">
+				  <div class="span7"><iframe width="100%" scrolling="auto" height="360" frameborder="0" hspace="0" src="http://player.vimeo.com/video/28379417?autoplay=0&amp;portrait=0&amp;title=0&amp;byline=0"></iframe></div>
+				  <div class="span5">
+					<h1>Tokyo Rising<span class="muted ">Featuring Pharrell Williams</span></h1>
+					
+					<p>Tokyo faces a new reality after the tragedy of 3/11. While persistent challenges still lay ahead, the city's creative class is hell-bent on making 
+					sure that their hometown thrives. Innovative and resilient, they are defining the future of Tokyo on their own terms.
+					<br><br>
+					<a href="http://www.palladiumboots.com/video/tokyo-rising" target="_blank" class="pull-right">Full Documentary</a></p><br>
+					
+					<p>
+					  <code><a href="http://www.palladiumboots.com/taxonomy/term/22" target="_blank">architecture & design</a></code>
+					  <code><a href="http://www.palladiumboots.com/taxonomy/term/19" target="_blank">art</a></code>
+					  <code><a href="http://www.palladiumboots.com/taxonomy/term/17" target="_blank">culture</a></code>
+					  <code><a href="http://www.palladiumboots.com/taxonomy/term/72" target="_blank">japan</a></code> 
+					  <code><a href="http://www.palladiumboots.com/taxonomy/term/16" target="_blank">music</a></code> 
+					  <code><a href="http://www.palladiumboots.com/taxonomy/term/71" target="_blank">tokyo</a></code> 
+					  <code><a href="http://www.palladiumboots.com/taxonomy/term/18" target="_blank">urban exploration</a></code>
+					  <code><a href="http://www.palladiumboots.com/taxonomy/term/20" target="_blank">video</a></code>
+					</p>
+				  </div>
+				</div>
+			  </div>
+			  
+			<div class="well" style="margin: 20px auto;">
+				<div class="row-fluid">
+				  <div class="span6"><button type="button" id="inline_html_simple" target="#demo_inline_element" class="btn btn-large btn-block btn-inverse" data-type="inline" data-caption="Design custom layouts and pull them into iLightBox to create fancy overlays.">Open top content in iLightBox</button></div>
+				  <div class="span6"><button type="button" id="inline_html_forced" class="btn btn-large btn-block btn-inverse">Open top content in iLightBox with forced size (720x360)</button></div>
+				</div>
+            </div>
+      </div>
+
+      <hr class="featurette-divider" id="html_ajax">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">HTML <span class="muted">&middot; Ajax</span></h2>
+        <p class="marketing-byline left">iLightBox can handle Ajax calls. All ajax options is customizable. The lazy loading can load ajax call and all entire elements.</p>
+
+			<div class="well" style="margin: 20px auto;">
+				<div class="row-fluid">
+				  <div class="span4"><button type="button" id="ajax_simple" target="assets/ajax/stevejobs.html" data-type="ajax" class="btn btn-large btn-block btn-inverse">Open Ajax</button></div>
+				  <div class="span4"><button type="button" id="ajax_forced" target="assets/ajax/stevejobs.html" data-type="ajax" data-options="width: 702, height: 300" class="btn btn-large btn-block btn-inverse">Open Ajax with forced size (702x300)</button></div>
+				  <div class="span4"><button type="button" id="ajax_modal" target="assets/ajax/ajax-video.html" data-type="ajax" class="btn btn-large btn-block btn-inverse">Open Ajax in modal</button></div>
+				</div>
+            </div>
+      </div>
+
+      <hr class="featurette-divider" id="html_flash">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">HTML <span class="muted">&middot; FLASH / SWF</span></h2>
+
+			<div class="well" style="margin: 20px auto;">
+				<div class="row-fluid">
+				  <div class="span6"><a href="http://www.adobe.com/jp/events/cs3_web_edition_tour/swfs/perform.swf" id="flash_simple" data-options="width:595, height:380" class="btn btn-large btn-block btn-inverse">Open Flash in iLightBox</a></div>
+				  <div class="span6"><a href="http://www.adobe.com/jp/events/cs3_web_edition_tour/swfs/perform.swf" id="flash_forced" data-options="width:720, height:460" class="btn btn-large btn-block btn-inverse">Open Flash with forced size (720x460)</a></div>
+				</div>
+            </div>
+      </div>
+
+      <hr class="featurette-divider" id="html_iframe">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">HTML <span class="muted">&middot; IFRAME</span></h2>
+
+			<div class="well" style="margin: 20px auto;">
+				<div class="row-fluid">
+				  <div class="span4"><a href="http://www.iprodev.com/" id="iframe_1" data-options="width:'95%', height:460" class="btn btn-large btn-block btn-inverse">Open iProDev (95%x460)</a></div>
+				  <div class="span4"><a href="https://maps.google.com/maps?hl=en&q=Champ+de+Mars,+5+Avenue+Anatole+France,+75007+Paris,+France&panel=1&f=d&fb=1&dirflg=d&geocode=0,48.858278,2.294254&cid=0,0,10222232094831998944&hq=eiffel+tower&hnear=eiffel+tower&vpsrc=6&t=h&output=embed" id="iframe_2" data-options="width:860, height:420" data-caption="Champ de Mars, 5 Avenue Anatole France, 75007 Paris, France. <a href='http://en.wikipedia.org/wiki/Eiffel_Tower' target='_blank'>Eiffel Tower</a>" class="btn btn-large btn-block btn-inverse">Open Eiffel Tower (860x420)</a></div>
+				  <div class="span4"><a href="https://maps.google.com/maps?f=d&amp;source=embed&amp;saddr=&amp;daddr=48.855927,2.298171&amp;hl=en&amp;geocode=&amp;sll=48.856005,2.298203&amp;sspn=0.004963,0.013078&amp;t=h&amp;mra=mift&amp;mrsp=1&amp;sz=17&amp;ie=UTF8&amp;ll=48.856019,2.298203&amp;spn=0.004934,0.013078&amp;layer=c&amp;cbll=48.855927,2.298171&amp;panoid=geXVBB0v9nE2d2ZSZFx4Jg&amp;cbp=12,315.41,,0,-9.17&amp;output=svembed" id="iframe_3" data-options="width:860, height:320" class="btn btn-large btn-block btn-inverse">Open Eiffel Tower Panoramio (860x320)</a></div>
+				</div>
+            </div>
+      </div>
+
+      <hr class="featurette-divider" id="html_advanced_examples">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">HTML <span class="muted">&middot; Advanced Examples</span></h2>
+		<p class="marketing-byline left">In this case iLightBox display the DOM elements that created on the fly and the lazy loading can load all entire elements.</p>
+
+<pre class="prettyprint linenums">
+&lt;div class="center"&gt;
+  &lt;h2&gt;
+    &lt;img src="assets/img/smile.gif"&gt;
+    It's time to upgrade.
+  &lt;/h2&gt;
+  &lt;hr&gt;
+  &lt;p&gt;iLightBox supports DOM elements created on the fly.&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+
+			<div class="well" style="margin: 20px auto;">
+				<a href="#" id="DOM" data-options="width:860, height:420" class="btn btn-large btn-block btn-inverse">Create DOM elements 'on the fly'</a>
+            </div>
+      </div>
+
+      <hr class="featurette-divider" id="video_simple">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">Video <span class="muted">&middot; Simple Usage</span></h2>
+		<p class="marketing-byline left">Here we use default settings for single video preview.</p>
+
+			<ul class="thumbnails">
+              <li class="span3">
+                <a id="video_1" href="http://www.youtube.com/embed/uuwfgXD8qV8?autoplay=1&autohide=1&fs=1&rel=0&hd=1&wmode=opaque&enablejsapi=1" class="thumbnail" data-caption="Katy Perry - Part Of Me" data-options="width:1920, height:1080">
+                  <img src="assets/img/photos/katy_perry_part_of_me.jpg">
+                </a>
+				<center><code style="display:inline-block; margin-top: 10px;">&nbsp;&nbsp;<b>YouTube</b>&nbsp;&nbsp;</code></center>
+              </li>
+              <li class="span3">
+                <a id="video_2" href="http://player.vimeo.com/video/54333970?autoplay=0" class="thumbnail" data-options="width:800, height:450">
+                  <img src="assets/img/photos/376665716_1280.jpg">
+                </a>
+				<center><code style="display:inline-block; margin-top: 10px;">&nbsp;&nbsp;<b>Vimeo</b>&nbsp;&nbsp;</code></center>
+              </li>
+              <li class="span3">
+                <a id="video_3" href="http://trailers.apple.com/movies/newline/thelaststand/laststand-tlr1_720p.mov" class="thumbnail" data-options="width:1280, height:544">
+                  <img src="assets/img/photos/thumbnail_7050.jpg">
+                </a>
+				<center><code style="display:inline-block; margin-top: 10px;">&nbsp;&nbsp;<b>QuickTime</b>&nbsp;&nbsp;</code></center>
+              </li>
+              <li class="span3">
+                <a id="video_html5" href="http://iprodev.com/ilightbox/assets/macbookpro-colors-cc-us-20121116_848x480.ipad.mp4" class="thumbnail" data-options="width:848, height:480, html5video: { webm: 'http://iprodev.com/ilightbox/assets/macbookpro-colors-cc-us-20121116_848x480.webmhd.webm', poster: 'assets/img/photos/macbook-pro-poster.jpg' }">
+                  <img src="assets/img/photos/macbook-pro.jpg">
+                </a>
+				<center><code style="display:inline-block; margin-top: 10px;">&nbsp;&nbsp;<b>HTML5</b>&nbsp;&nbsp;</code></center>
+              </li>
+            </ul>
+      </div>
+
+      <hr class="featurette-divider" id="video_advanced_examples">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">Video <span class="muted">&middot; Advanced Examples</span></h2>
+		<p class="marketing-byline left">In this case iLightBox recognize the video from any sites that the video is available on it and just show the video. Awesome :-)</p>
+			<ul class="thumbnails">
+              <li class="span4">
+                <a id="video_4" href="http://www.youtube.com/watch?v=_Z4Z-E-Mxbo" class="thumbnail">
+                  <img src="assets/img/photos/564645646.jpg">
+                </a>
+				<code style="display:inline-block; margin-top: 10px;">&nbsp;&nbsp;<b>YouTube</b>&nbsp;&nbsp;</code>
+              </li>
+              <li class="span4">
+                <a id="video_5" href="http://vimeo.com/55331511" class="thumbnail">
+                  <img src="assets/img/photos/382910812_1280.jpg">
+                </a>
+				<code style="display:inline-block; margin-top: 10px;">&nbsp;&nbsp;<b>Vimeo</b>&nbsp;&nbsp;</code>
+              </li>
+              <li class="span4">
+                <a id="video_6" href="http://www.hulu.com/watch/424558" class="thumbnail">
+                  <img src="assets/img/photos/60159184.jpg">
+                </a>
+				<code style="display:inline-block; margin-top: 10px;">&nbsp;&nbsp;<b>Hulu</b>&nbsp;&nbsp;</code>
+              </li>
+              <li class="span4">
+                <a id="video_7" href="http://www.metacafe.com/watch/9542534/man_of_steel_trailer/" class="thumbnail">
+                  <img src="assets/img/photos/man_of_steel_trailer.jpg">
+                </a>
+				<code style="display:inline-block; margin-top: 10px;">&nbsp;&nbsp;<b>MetaCafe</b>&nbsp;&nbsp;</code>
+              </li>
+              <li class="span4">
+                <a id="video_8" href="http://www.dailymotion.com/video/xp53r5_the-avengers-official-trailer-2_shortfilms" class="thumbnail">
+                  <img src="assets/img/photos/42228545-jpeg_preview_large.jpg">
+                </a>
+				<code style="display:inline-block; margin-top: 10px;">&nbsp;&nbsp;<b>Dailymotion</b>&nbsp;&nbsp;</code>
+              </li>
+              <li class="span4">
+                <a id="video_9" href="http://www.gametrailers.com/videos/za4633/crysis-3-the-7-wonders---episode-1--hell-of-a-town" data-options="width: 1280, height: 720" class="thumbnail">
+                  <img src="assets/img/photos/t_crysis3_7wonders_ep1trailer.jpg">
+                </a>
+				<code style="display:inline-block; margin-top: 10px;">&nbsp;&nbsp;<b>GameTrailers</b>&nbsp;&nbsp;</code>
+              </li>
+            </ul>
+			
+			<div class="well" style="margin: 20px auto;">
+				<a href="#" id="video_gallery" class="btn btn-large btn-block btn-inverse">Create "Video Gallery" from top videos in Modal</a>
+            </div>
+      </div>
+
+      <hr class="featurette-divider" id="advanced_mixed">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">Advanced Examples <span class="muted">&middot; Mixed & Google Maps</span></h2>
+
+			<ul class="thumbnails">
+              <li class="span6">
+                <a id="mixed_contents" href="#" class="thumbnail">
+                  <img src="assets/img/photos/mixed_contents.jpg">
+                </a>
+				<center><code style="display:inline-block; margin-top: 10px;">&nbsp;&nbsp;<b>Mixed Contents</b>&nbsp;&nbsp;</code></center>
+              </li>
+              <li class="span6">
+                <a id="google_maps" href="#" class="thumbnail" alt="The White House">
+                  <img src="assets/img/photos/maps.jpg">
+                </a>
+				<center><code style="display:inline-block; margin-top: 10px;">&nbsp;&nbsp;<b>Google Maps via API</b>&nbsp;&nbsp;</code></center>
+              </li>
+            </ul>
+      </div>
+
+      <hr class="featurette-divider" id="advanced_events">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">Advanced Examples <span class="muted">&middot; Events</span></h2>
+
+			<div class="well" style="margin: 20px auto;">
+				<button type="button" id='events_gallery' class="btn btn-large btn-block btn-inverse">Click me</button>
+            </div>
+		<pre style="height: 300px; overflow: auto;" id="pre_events"></pre>
+      </div>
+
+      <hr class="featurette-divider" id="galley_with_slideshow">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">Advanced Examples <span class="muted">&middot; Image Gallery with Slideshow</span></h2>
+        <p class="marketing-byline left">Here we use some tricks in image gallery preview to give slideshow ability.</p>
+	  
+		  <ul class="thumbnails" id="image_gallery_with_slideshow">
+			<li class="span5">
+			  <a href="assets/img/photos/challenger_by_nikosalpha-d5mgk3u.jpg" data-options="thumbnail: 'assets/img/thumbnails/challenger_by_nikosalpha-d5mgk3u.jpg'" class="thumbnail">
+				<img src="assets/img/thumbnails/challenger_by_nikosalpha-d5mgk3u.jpg">
+			  </a>
+			</li>
+			<li class="span2">
+			  <a href="assets/img/photos/catharine_by_nikosalpha-d5drzr1.jpg" data-options="thumbnail: 'assets/img/thumbnails/catharine_by_nikosalpha-d5drzr1.jpg'" class="thumbnail">
+				<img src="assets/img/thumbnails/catharine_by_nikosalpha-d5drzr1.jpg">
+			  </a>
+			</li>
+			<li class="span3">
+			  <a href="assets/img/photos/underexposed_by_nikosalpha.jpg" data-options="thumbnail: 'assets/img/thumbnails/underexposed_by_nikosalpha.jpg'" class="thumbnail">
+				<img src="assets/img/thumbnails/underexposed_by_nikosalpha.jpg">
+			  </a>
+			</li>
+			<li class="span2 pull-right">
+			  <a href="assets/img/photos/auric_by_nikosalpha-d4ymtor.jpg" data-options="thumbnail: 'assets/img/thumbnails/auric_by_nikosalpha-d4ymtor.jpg'" class="thumbnail">
+				<img src="assets/img/thumbnails/auric_by_nikosalpha-d4ymtor.jpg">
+			  </a>
+			</li>
+			<li class="span3">
+			  <a href="assets/img/photos/piece_by_nikosalpha-d3bc2cc.jpg" data-options="thumbnail: 'assets/img/thumbnails/piece_by_nikosalpha-d3bc2cc.jpg'" class="thumbnail">
+				<img src="assets/img/thumbnails/piece_by_nikosalpha-d3bc2cc.jpg">
+			  </a>
+			</li>
+			<li class="span2">
+			  <a href="assets/img/photos/blonde_by_nikosalpha-d5hk45h.jpg" data-options="thumbnail: 'assets/img/thumbnails/blonde_by_nikosalpha-d5hk45h.jpg'" class="thumbnail">
+				<img src="assets/img/thumbnails/blonde_by_nikosalpha-d5hk45h.jpg">
+			  </a>
+			</li>
+		  </ul>
+      </div>
+	  
+	  <div class="alert alert-info" align="left">
+	    Pictures by <a href="http://nikosalpha.com" target="_blank">nikos<b>vasilakis</b></a>
+	  </div>
+
+      <hr class="featurette-divider" id="advanced_dialogues">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">Advanced Examples <span class="muted">&middot; Alert/Confirm/Prompt</span></h2>
+		<p class="marketing-byline left">You can replace the basic functionality provided by the standard javascript alert(), confirm(), and prompt() functions.</p>
+
+			<div class="well" style="margin: 20px auto;">
+				<div class="row-fluid">
+				  <div class="span4"><button type="button" id='show_alert' class="btn btn-large btn-block btn-inverse">Click me for an alert!</button></div>
+				  <div class="span4"><button type="button" id='show_prompt' class="btn btn-large btn-block btn-inverse">Click me for a prompt dialogue</button></div>
+				  <div class="span4"><button type="button" id='show_confirm' class="btn btn-large btn-block btn-inverse">Click me for a confirm dialogue</button></div>
+				</div>
+            </div>
+
+      </div>
+
+      <!-- /END THE FEATURETTES -->
+
+
+      <hr class="featurette-divider">
+
+      <!-- FOOTER -->
+      <footer>
+        <p class="pull-right"><a href="#home">Back to top</a></p>
+        <p align="left">&copy; 2012 <a href="http://iprodev.com/">Hemn Chawroka</a>.</p>
+      </footer>
+
+    </div><!-- /.container -->
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	<script type="text/javascript" src="assets/js/css_browser_selector.min.js"></script>
+	<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/jquery.requestAnimationFrame.js"></script>
+	<script type="text/javascript" async defer src="http://iprodev.com/projects.php?p=ilightbox"></script>
+	<script src="assets/js/google-code-prettify/prettify.js"></script>
+    <script src="src/js/jquery.mousewheel.js"></script>
+    <script src="src/js/ilightbox.packed.js"></script>
+    <script src="assets/js/bootstrap-dropdown.js"></script>
+    <script src="assets/js/bootstrap-scrollspy.js"></script>
+    <script src="assets/js/bootstrap-tooltip.js"></script>
+    <script src="assets/js/bootstrap-popover.js"></script>
+    <script src="assets/js/bootstrap-collapse.js"></script>
+    <script>
+
+		$(document).ready(function(){
+		
+			window.prettyPrint && prettyPrint();
+
+			// IMAGES - Single Image
+			$('#singleimage_1').iLightBox();
+			$('#singleimage_2').iLightBox();
+			$('#singleimage_3').iLightBox();
+			$('#singleimage_4').iLightBox();
+
+			// IMAGES - Image Gallery
+			$('ul#image_gallery li a').iLightBox();
+
+			// IMAGES - Advanced Examples - Begins "Force Size & Custom Attribute" Example
+			$('#forceresize').iLightBox({
+				attr: 'photo',
+				skin: 'mac',
+				innerToolbar: true,
+				overlay: {
+					opacity: 0.7
+				},
+				controls: {
+					fullscreen: false
+				}
+			});
+			// End of the "Force Size & Custom Attribute" Example
+
+			// IMAGES - Advanced Examples - Begins "Inline Image Gallery" Example
+			$('#inline_gallery').click(function(){
+				$.iLightBox(
+					[
+						{
+							URL: "assets/img/photos/caesarlima/489_1zokvamp_beauty.jpg",
+							type: "image",
+							options: {
+								thumbnail: "assets/img/thumbnails/caesarlima/489_1zokvamp_beauty.jpg",
+								skin: "dark"
+							}
+						},
+						{
+							URL: "assets/img/photos/caesarlima/452_1npblonde.jpg",
+							type: "image",
+							options: {
+								thumbnail: "assets/img/thumbnails/caesarlima/452_1npblonde.jpg"
+							}
+						},
+						{
+							URL: "assets/img/photos/caesarlima/397_1natascha_wind.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/caesarlima/397_1natascha_wind.jpg",
+								skin: "dark"
+							},
+							type: "image"
+						},
+						{
+							URL: "assets/img/photos/caesarlima/599_1nero_splash_1.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/caesarlima/599_1nero_splash_1.jpg"
+							},
+							type: "image",
+							caption: "Skins can even be modified on a per-element or group basis."
+						},
+						{
+							URL: "assets/img/photos/caesarlima/481_1cae_shadow.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/caesarlima/481_1cae_shadow.jpg"
+							},
+							type: "image"
+						},
+						{
+							URL: "assets/img/photos/caesarlima/618_1marilia_splash.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/caesarlima/618_1marilia_splash.jpg",
+								skin: "dark"
+							},
+							type: "image"
+						},
+						{
+							URL: "assets/img/photos/caesarlima/319_1caenewpg2.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/caesarlima/319_1caenewpg2.jpg"
+							},
+							type: "image"
+						},
+						{
+							URL: "assets/img/photos/caesarlima/350_1r3__2007__caesarlima_seb8mag3.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/caesarlima/350_1r3__2007__caesarlima_seb8mag3.jpg",
+								width: 300
+							},
+							type: "image",
+							caption: "This one resized to wiidth:300px"
+						},
+						{
+							URL: "assets/img/photos/caesarlima/625_1beautykaetsite.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/caesarlima/625_1beautykaetsite.jpg"
+							},
+							type: "image"
+						},
+						{
+							URL: "assets/img/photos/caesarlima/583_1testsnowwhite.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/caesarlima/583_1testsnowwhite.jpg"
+							},
+							type: "image"
+						},
+						{
+							URL: "assets/img/photos/caesarlima/601_1beauty1.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/caesarlima/601_1beauty1.jpg",
+								skin: "dark"
+							},
+							type: "image"
+						},
+						{
+							URL: "assets/img/photos/caesarlima/585_1DawnO_056casei.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/caesarlima/585_1DawnO_056casei.jpg"
+							},
+							type: "image"
+						},
+						{
+							URL: "assets/img/photos/caesarlima/592_1r388_yb_banner.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/caesarlima/592_1r388_yb_banner.jpg",
+								skin: "dark"
+							},
+							type: "image"
+						},
+						{
+							URL: "assets/img/photos/caesarlima/604_1beauty3.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/caesarlima/604_1beauty3.jpg"
+							},
+							type: "image"
+						},
+						{
+							URL: "assets/img/photos/caesarlima/603_1beauty4.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/caesarlima/603_1beauty4.jpg"
+							},
+							type: "image"
+						},
+						{
+							URL: "assets/img/photos/caesarlima/631_1steampunksplash4.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/caesarlima/631_1steampunksplash4.jpg"
+							},
+							type: "image"
+						}
+					],
+					{
+						startFrom: 3,
+						skin: 'light',
+						path: 'horizontal',
+						maxScale: 1.3,
+						overlay: {
+							opacity: .4
+						},
+						styles: {
+							nextOffsetX: 75,
+							nextOpacity: .55,
+							prevOffsetX: 75,
+							prevOpacity: .55
+						},
+						thumbnails: {
+							normalOpacity: .6,
+							activeOpacity: 1
+						}
+					}
+				);
+				return false;
+			});
+			// End of the "Inline Image Gallery" Example
+
+			// IMAGES - Advanced Examples - Begins "Open in Modal" Example
+			$('#open_in_modal').click(function(){
+				$.iLightBox(
+					[
+						{
+							URL: "assets/img/photos/MS-test-day-27898.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/MS-test-day-27898.jpg"
+							},
+							type: "image",
+							caption: "First Caption. It'll blow your mind."
+						},
+						{
+							URL: "assets/img/photos/MS-test-day-27771.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/MS-test-day-27771.jpg"
+							},
+							type: "image",
+							caption: "Oh yeah, it's that good. See for yourself."
+						},
+						{
+							URL: "assets/img/photos/MS-test-day-27845.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/MS-test-day-27845.jpg"
+							},
+							type: "image",
+							caption: "And lastly, this one. Checkmate."
+						},
+						{
+							URL: "assets/img/photos/MS-test-day-27780.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/MS-test-day-27780.jpg"
+							},
+							type: "image"
+						},
+						{
+							URL: "assets/img/photos/MS-test-day-278081.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/MS-test-day-278081.jpg"
+							},
+							type: "image"
+						},
+						{
+							URL: "assets/img/photos/MS-test-day-27749.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/MS-test-day-27749_2.jpg"
+							},
+							type: "image"
+						}
+					],
+					{
+						skin: 'metro-black',
+						path: 'horizontal',
+						overlay: {
+							opacity: .7,
+							blur: false
+						},
+						keyboard: {
+							esc: false
+						},
+						styles: {
+							nextOpacity: .55,
+							prevOpacity: .55
+						}
+					}
+				);
+				return false;
+			});
+			// End of the "Open in Modal" Example
+
+			// IMAGES - Advanced Examples - Begins "Auto recognition" Example
+			$('#image_recognizer').click(function(){
+				var socialButtons = {
+					facebook: true,
+					twitter: true,
+					googleplus: {
+						source: "https://plus.google.com/share?url={URL}",
+						text: "Share on Google+"
+					},
+					digg: {
+						width: 800,
+						height: 480
+					}
+				};
+				
+				$.iLightBox(
+					[
+						{
+							URL: "http://instagram.com/p/P72Lw9Oc7L/",
+							caption: "This one recognized from this <a href='http://instagram.com/p/P72Lw9Oc7L/' target='_blank'>URL</a> on instagram.",
+							options: {
+								social: $.extend(true, {}, socialButtons, {
+									facebook: {
+										URL: "http://instagram.com/p/P72Lw9Oc7L/"
+									},
+									twitter: {
+										URL: "http://instagram.com/p/P72Lw9Oc7L/"
+									},
+									googleplus: {
+										URL: "http://instagram.com/p/P72Lw9Oc7L/"
+									},
+									digg: {
+										URL: "http://instagram.com/p/P72Lw9Oc7L/"
+									}
+								})
+							}
+						},
+						{
+							URL: "http://www.flickr.com/photos/bruce-hood/8584616829/",
+							caption: "This one recognized from this <a href='http://www.flickr.com/photos/bruce-hood/8584616829/' target='_blank'>URL</a> on flickr.",
+							options: {
+								social: {
+									facebook: {
+										URL: "http://www.flickr.com/photos/bruce-hood/8584616829/"
+									},
+									twitter: {
+										URL: "http://www.flickr.com/photos/bruce-hood/8584616829/"
+									}
+								}
+							}
+						},
+						{
+							URL: "http://www.deviantart.com/art/Everflowing-Now-361277015",
+							caption: "This one recognized from this <a href='http://www.deviantart.com/art/Everflowing-Now-361277015' target='_blank'>URL</a> on deviantArt.",
+							options: {
+								social: $.extend(true, {}, socialButtons, {
+									facebook: {
+										URL: "http://www.deviantart.com/art/Everflowing-Now-361277015"
+									},
+									twitter: {
+										URL: "http://www.deviantart.com/art/Everflowing-Now-361277015"
+									},
+									googleplus: {
+										URL: "http://www.deviantart.com/art/Everflowing-Now-361277015"
+									},
+									digg: {
+										URL: "http://www.deviantart.com/art/Everflowing-Now-361277015"
+									}
+								})
+							}
+						}
+					],
+					{
+						smartRecognition: true,
+						skin: 'smooth',
+						path: 'horizontal',
+						fullAlone: false,
+						caption: {
+							start: false
+						},
+						social: {
+							start: false,
+							buttons: socialButtons
+						},
+						styles: {
+							nextScale: 0.6,
+							prevScale: 0.6,
+							nextOpacity: 0.6,
+							prevOpacity: 0.6
+						},
+						thumbnails: {
+							normalOpacity: .6,
+							activeOpacity: 1
+						}
+					}
+				);
+				return false;
+			});
+			// End of the "Auto recognition" Example
+			
+			// IMAGES - Advanced Examples - Begins "Auto cycling & Arrows" Example
+			$('#cycling_arrows').click(function(){
+				$.iLightBox(
+					[
+						{
+							URL: "assets/img/photos/challenger_by_nikosalpha-d5mgk3u.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/challenger_by_nikosalpha-d5mgk3u.jpg"
+							},
+							caption: "Presenting Tonia Sotiropoulou, in a new 2012 shooting. Tonia is currently in the big screen with James Bond's Skyfall. This photo is a sample for magazine use, more photos will follow in the future. See previous work with her at <a href='http://nikosalpha.com/tonia'>nikosalpha.com/tonia</a>."
+						},
+						{
+							URL: "assets/img/photos/catharine_by_nikosalpha-d5drzr1.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/catharine_by_nikosalpha-d5drzr1.jpg"
+							},
+							caption: "Presenting Catharine. She is a young multitalented beautiful voice singing in the UK. Follow her work <a href='https://www.facebook.com/CatharineAmorosoMusic'>here</a>"
+						},
+						{
+							URL: "assets/img/photos/underexposed_by_nikosalpha.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/underexposed_by_nikosalpha.jpg"
+							}
+						},
+						{
+							URL: "assets/img/photos/auric_by_nikosalpha-d4ymtor.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/auric_by_nikosalpha-d4ymtor.jpg"
+							},
+							caption: "One more photo of one of my favorite subjects, the Lips. I decided to create a unique tag in my website only for them. Here they are so far: <a href='http://nikosalpha.com/lips'>nikosalpha.com/lips</a>."
+						},
+						{
+							URL: "assets/img/photos/piece_by_nikosalpha-d3bc2cc.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/piece_by_nikosalpha-d3bc2cc.jpg"
+							},
+							caption: "The sweetest piece of my life"
+						},
+						{
+							URL: "assets/img/photos/blonde_by_nikosalpha-d5hk45h.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/blonde_by_nikosalpha-d5hk45h.jpg"
+							},
+							caption: "New session with the singer Valerie Kalenti! (:"
+						}
+					],
+					{
+						skin: 'mac',
+						path: 'horizontal',
+						fullAlone: 0,
+						controls: {
+							thumbnail: 0,
+							arrows: 1,
+							slideshow: 1
+						}
+					}
+				);
+				return false;
+			});
+			// End of the "Auto cycling & Arrows" Example
+
+			// IMAGES - Deeplinking & Looping
+			$('#deeplinking_looping_gallery li a').iLightBox({
+				skin: 'metro-white',
+				path: 'horizontal',
+				fullViewPort: 'fill',
+				infinite: true,
+				linkId: "music",
+				overlay: {
+					opacity: 1,
+					blur: false
+				},
+				controls: {
+					thumbnail: false
+				},
+				styles: {
+					nextOffsetX: -45,
+					prevOffsetX: -45
+				}
+			});
+			// End of the "Deeplinking & Looping" Example
+
+			// HTML - Inline Content
+			$('#inline_html_simple').iLightBox({
+				attr: 'target',
+				skin: 'metro-white'
+			});
+			
+			$('#inline_html_forced').click(function(){
+				$.iLightBox([
+					{
+						URL: '#demo_inline_element',
+						type: 'inline',
+						options: {
+							width: 720,
+							height: 360
+						}
+					}
+				],{
+					skin: 'metro-white'
+				});
+				return false;
+			});
+			// End of the "Inline Content" Example
+
+			// HTML - Ajax
+			$('#ajax_simple').iLightBox({
+				attr: 'target',
+				overlay: {
+					opacity: .6
+				},
+				skin: 'parade',
+				minScale: 1
+			});
+
+			$('#ajax_forced').iLightBox({
+				attr: 'target',
+				overlay: {
+					opacity: .6
+				},
+				skin: 'parade',
+				minScale: 1
+			});
+
+			$('#ajax_modal').iLightBox({
+				attr: 'target',
+				innerToolbar: true,
+				overlay: {
+					opacity: .6,
+					blur: false
+				},
+				controls: {
+					fullscreen: false
+				},
+				keyboard: {
+					esc: false
+				},
+				skin: 'parade',
+				minScale: 1
+			});
+			// End of the "Ajax" Example
+
+			//HTML - FLASH / SWF
+			$('#flash_simple').iLightBox({
+				innerToolbar: true,
+				controls: {
+					fullscreen: false
+				},
+				skin: 'dark'
+			});
+
+			$('#flash_forced').iLightBox({
+				innerToolbar: true,
+				controls: {
+					fullscreen: false
+				},
+				minScale: 1
+			});
+			// End of the "FLASH / SWF" Example
+
+			//HTML - IFRAME
+			$('#iframe_1').iLightBox();
+
+			$('#iframe_2').iLightBox({
+				minScale: 1
+			});
+
+			$('#iframe_3').iLightBox({
+				minScale: 1
+			});
+			// End of the "IFRAME" Example
+
+			// HTML - Advanced Examples
+			$('#DOM').click(function(){
+				var html = $('<div class="center"><h2><img src="assets/img/smile.gif">It\'s time to upgrade.</h2><hr><p>iLightBox supports DOM elements created on the fly.</p></div>');
+				$.iLightBox([
+					{
+						URL: html,
+						type: 'html'
+					}
+				],
+				{
+					innerToolbar: true,
+					controls: {
+						fullscreen: false
+					},
+					skin: 'parade',
+					minScale: 1
+				});
+				return false;
+			});
+			// End of the "HTML - Advanced Examples" Example
+
+			// Video - Simple Usage
+			$('#video_1').iLightBox();
+			$('#video_2').iLightBox();
+			$('#video_3').iLightBox();
+			$('#video_html5').iLightBox();
+			// End of the "Video - Simple Usage" Example
+			
+			// Video - Advanced Examples
+			$('#video_4').iLightBox({
+				smartRecognition: true
+			});
+			$('#video_5').iLightBox({
+				smartRecognition: true
+			});
+			$('#video_6').iLightBox({
+				smartRecognition: true
+			});
+			$('#video_7').iLightBox({
+				smartRecognition: true
+			});
+			$('#video_8').iLightBox({
+				smartRecognition: true
+			});
+			$('#video_9').iLightBox({
+				smartRecognition: true
+			});
+
+			$('#video_gallery').click(function(){
+				$.iLightBox(
+					[
+						{
+							URL: "http://www.youtube.com/watch?v=_Z4Z-E-Mxbo"
+						},
+						{
+							URL: "http://vimeo.com/55331511"
+						},
+						{
+							URL: "http://www.hulu.com/watch/424558"
+						},
+						{
+							URL: "http://www.metacafe.com/watch/9542534/man_of_steel_trailer/"
+						},
+						{
+							URL: "http://www.dailymotion.com/video/xp53r5_the-avengers-official-trailer-2_shortfilms"
+						},
+						{
+							URL: "http://www.gametrailers.com/videos/za4633/crysis-3-the-7-wonders---episode-1--hell-of-a-town",
+							options: {
+								width: 1280,
+								height: 720
+							}
+						}
+					],
+					{
+						smartRecognition: true,
+						skin: 'dark',
+						overlay: {
+							blur: false
+						},
+						keyboard: {
+							esc: false
+						},
+						styles: {
+							nextOpacity: .55,
+							prevOpacity: .55
+						}
+					}
+				);
+				return false;
+			});
+			// End of the "Video - Advanced Examples" Example
+
+			// Advanced Examples - Mixed & Google Maps
+			// Advanced Examples - Mixed
+			$('#mixed_contents').click(function(){
+				$.iLightBox(
+					[
+						{
+							URL: "http://iprodev.com/ilightbox/assets/MV5BMTM1NTMyMDE4OV5BMTFeQW1wNF5BbWU3MDEyNTI0OTU.mp4",
+							options: {
+								thumbnail: "assets/img/thumbnails/sherlock_holmes/trailer.jpg",
+								html5video: {
+									webm: "http://iprodev.com/ilightbox/assets/MV5BMTM1NTMyMDE4OV5BMTFeQW1wNF5BbWU3MDEyNTI0OTU.webm",
+									poster: "assets/img/sherlock_holmes/trailer.jpg"
+								},
+								width: 1280,
+								height: 544
+							}
+						},
+						{
+							URL: "assets/img/sherlock_holmes/1.jpg",
+							caption: 'This one fill the screen when you enter fullscreen.',
+							options: {
+								thumbnail: "assets/img/thumbnails/sherlock_holmes/1.jpg",
+								fullViewPort: 'fill'
+							}
+						},
+						{
+							URL: "assets/img/sherlock_holmes/2.jpg",
+							caption: 'This one fit to the screen when you enter fullscreen.',
+							options: {
+								thumbnail: "assets/img/thumbnails/sherlock_holmes/2.jpg",
+								fullViewPort: 'fit'
+							}
+						},
+						{
+							URL: "http://www.youtube.com/embed/lNxhpNpnAkk?autohide=1&border=0&egm=0&showinfo=0&showsearch=0",
+							options: {
+								thumbnail: "assets/img/thumbnails/sherlock_holmes/mqdefault.jpg",
+								fullViewPort: 'stretch',
+								icon: "video",
+								width: 1280,
+								height: 720
+							}
+						},
+						{
+							URL: "assets/img/sherlock_holmes/3.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/sherlock_holmes/3.jpg"
+							}
+						},
+						{
+							URL: "assets/img/sherlock_holmes/4.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/sherlock_holmes/4.jpg"
+							}
+						},
+						{
+							URL: "assets/img/sherlock_holmes/5.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/sherlock_holmes/5.jpg"
+							}
+						},
+						{
+							URL: "assets/img/sherlock_holmes/6.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/sherlock_holmes/6.jpg"
+							}
+						},
+						{
+							URL: "assets/img/sherlock_holmes/7.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/sherlock_holmes/7.jpg"
+							}
+						},
+						{
+							URL: "assets/img/sherlock_holmes/8.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/sherlock_holmes/8.jpg"
+							}
+						}
+					],
+					{
+						path: 'horizontal',
+						skin: 'metro-black',
+						styles: {
+							nextOpacity: 0,
+							prevOpacity: 0
+						}
+					}
+				);
+				return false;
+			});
+			// End of the "Advanced Examples - Mixed" Example
+			
+			// Advanced Examples - Google Maps
+			$('#google_maps').click(function(){
+				$.iLightBox([
+					{
+						URL: "assets/ajax/maps.html",
+						options: {
+							width: 720,
+							height: 420
+						},
+						type: 'iframe'
+					}
+				],
+				{
+					minScale: 1,
+					skin: 'metro-black'
+				});
+				return false;
+			});
+			// End of the "Advanced Examples - Google Maps" Example
+			// End of the "Advanced Examples - Mixed & Google Maps" Examples
+
+			// Advanced Examples - Image Gallery with Slideshow
+			var slideShowButton = $('<a class="btn btn-primary slideshow_button">Slideshow</a>'),
+				slideshow = false,
+				pauseTime = 5000,
+				changeTimeout = null;
+			$('ul#image_gallery_with_slideshow li a').iLightBox({
+				skin: 'metro-white',
+				path: 'horizontal',
+				controls: {
+					thumbnail: false
+				},
+				styles: {
+					pageOffsetY: 100,
+					nextScale: 0.6,
+					prevScale: 0.6,
+					nextOpacity: 0.6,
+					prevOpacity: 0.6
+				},
+				effects: {
+					switchSpeed: 700
+				},
+				callback: {
+					onOpen: function(){
+						var t = this;
+						$('body').append(slideShowButton);
+						slideShowButton.on('click', function(){
+							if(slideshow) {
+								stopSlideshow();
+							}
+							else {
+								if(t.vars.current == t.vars.total-1) t.goTo(0);
+								startSlideshow();
+								changeTimeout = setTimeout(function(){
+									t.moveTo('next');
+								}, pauseTime);
+							}
+						});
+					},
+					onHide: function(){
+						slideShowButton.off('click').hide().remove();
+					},
+					onAfterLoad: function(){
+						slideShowButton.fadeIn(this.options.effects.loadedFadeSpeed);
+					},
+					onBeforeChange: function(){
+						clearTimeout(changeTimeout);
+					},
+					onAfterChange: function(api){
+						var t = this;
+						if(slideshow){
+							if(api.currentItem == this.vars.total-1) {
+								stopSlideshow();
+							} else changeTimeout = setTimeout(function(){
+								t.moveTo('next');
+							}, pauseTime);
+						}
+					},
+					onEnterFullScreen: function(){
+						slideShowButton.hide();
+						clearTimeout(changeTimeout);
+					},
+					onExitFullScreen: function(){
+						var t = this;
+						slideShowButton.show();
+						if(slideshow){
+							if(t.vars.current != t.vars.total-1) changeTimeout = setTimeout(function(){
+								t.moveTo('next');
+							}, pauseTime);
+						}
+					}
+				}
+			});
+			
+			function startSlideshow(){
+				slideshow = true;
+				slideShowButton.text('Stop');
+			}
+			
+			function stopSlideshow(){
+				slideshow = false;
+				clearTimeout(changeTimeout);
+				slideShowButton.text('Slideshow');
+			}
+			// End of the "Advanced Examples - Image Gallery with Slideshow" Examples
+
+
+			//Advanced Examples - Alert/Confirm/Prompt
+			function dialogue(content, title) {
+				content = $('<div />', {
+					'class': 'dialogue clearfix'
+				}).append(content);
+				
+				$.iLightBox([
+					{
+						URL: content,
+						type: "html",
+						title: (title) ? title : null
+					}
+				],
+				{
+					skin: 'metro-white ilightbox-dialogue',
+					minScale: 1,
+					innerToolbar: true,
+					show: {
+						effect: false
+					},
+					hide: {
+						effect: false
+					},
+					overlay: {
+						blur: false
+					},
+					controls: {
+						fullscreen: false
+					},
+					callback: {
+						// Hide the iLightBox when any buttons in the dialogue are clicked
+						onRender: function(api) {
+							$('.btn', api.currentElement).click(function(){
+								$('.btn', api.currentElement).unbind('click');
+								api.hide();
+							});
+						},
+						// Hide the iLightBox when any buttons in the dialogue are clicked
+						onShow: function(api) {
+							$('.btn-primary', api.currentElement).focus();
+						}
+					}
+				});
+			}
+
+			// Our Alert method
+			function Alert(message, title)
+			{
+				// Content will consist of the message and an ok button
+				var message = $('<p />', { html: message, 'class': 'dialogue_message' }),
+					ok = $('<button />', { html: "OK", 'class': 'btn btn-primary', keyup: function(e){
+						if(e.keyCode == 13) $(this).trigger('click');
+					}
+					});
+
+				dialogue( message.add(ok) , title);
+			}
+
+			// Our Prompt method
+			function Prompt(question, title, initial, callback)
+			{
+				// Content will consist of a question elem and input, with ok/cancel buttons
+				var message = $('<p />', {
+					html: question,
+					'class': 'dialogue_message'
+				}),
+				input = $('<input />', {
+					'type': 'text',
+					val: initial
+				}),
+				clear = $('<div />', {
+					'class': 'clear'
+				}),
+				ok = $('<button />', {
+					html: "OK",
+					'class': 'btn btn-primary',
+					click: function() { callback( input.val() ); },
+					keyup: function(e){
+						if(e.keyCode == 13) $(this).trigger('click');
+					}
+				}),
+				cancel = $('<button />', {
+					html: "Cancel",
+					'class': 'btn',
+					click: function() { callback(null); }
+				});
+
+				dialogue( message.add(input).add(clear).add(ok).add(cancel), title );
+			}
+
+			// Our Confirm method
+			function Confirm(question, title, callback)
+			{
+				// Content will consist of the question and ok/cancel buttons
+				var message = $('<p />', { html: question }),
+				ok = $('<button />', { 
+					html: "Yes",
+					'class': 'btn btn-primary',
+					click: function() { callback(true); },
+					keyup: function(e){
+						if(e.keyCode == 13) $(this).trigger('click');
+					}
+				}),
+				cancel = $('<button />', { 
+					html: "No",
+					'class': 'btn',
+					click: function() { callback(false); }
+				});
+
+				dialogue( message.add(cancel).add(ok), title, function() { callback(false); } );
+			}
+			
+			$('#show_alert').click(function(){
+				Alert('Custom alert() functions are cool.', 'Alert!');
+			});
+			
+			$('#show_prompt').click(function(){
+				Prompt('How would you describe iLightBox?', 'Attention!', 'Awesome!', function(response){
+					alert(response);
+					// do something with response
+				});
+			});
+			
+			$('#show_confirm').click(function(){
+				Confirm('Click Yes if you love iLightBox', 'Do you agree?', function(yes) {
+					// do something with yes
+					alert(yes);
+				});
+			});
+
+			// Advanced Examples - Events
+			$('#events_gallery').click(function(){
+				var con = $('#pre_events');
+				$.iLightBox(
+					[
+						{
+							URL: "assets/img/photos/MS-test-day-27898.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/MS-test-day-27898.jpg"
+							},
+							type: "image",
+							caption: "First Caption. It'll blow your mind."
+						},
+						{
+							URL: "assets/img/photos/MS-test-day-27771.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/MS-test-day-27771.jpg"
+							},
+							type: "image",
+							caption: "Oh yeah, it's that good. See for yourself."
+						},
+						{
+							URL: "assets/img/photos/MS-test-day-27845.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/MS-test-day-27845.jpg"
+							},
+							type: "image",
+							caption: "And lastly, this one. Checkmate."
+						},
+						{
+							URL: "assets/img/photos/MS-test-day-27780.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/MS-test-day-27780.jpg"
+							},
+							type: "image"
+						},
+						{
+							URL: "assets/img/photos/MS-test-day-278081.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/MS-test-day-278081.jpg"
+							},
+							type: "image"
+						},
+						{
+							URL: "assets/img/photos/MS-test-day-27749.jpg",
+							options: {
+								thumbnail: "assets/img/thumbnails/MS-test-day-27749_2.jpg"
+							},
+							type: "image"
+						}
+					],
+					{
+						path: 'horizontal',
+						overlay: {
+							opacity: .7
+						},
+						callback: {
+							onOpen: function(){
+								var d = new Date();
+								con.append(d.getHours()+':'+d.getMinutes()+':'+d.getSeconds()+'.'+d.getMilliseconds()+' - Event "onOpen" fired<br />').scrollTop(10000);
+							},
+							onRender: function(api, position){
+								var d = new Date();
+								con.append(d.getHours()+':'+d.getMinutes()+':'+d.getSeconds()+'.'+d.getMilliseconds()+' - Event "onRender" fired for item '+position+'.<br />').scrollTop(10000);
+							},
+							onShow: function(api, position){
+								var d = new Date();
+								con.append(d.getHours()+':'+d.getMinutes()+':'+d.getSeconds()+'.'+d.getMilliseconds()+' - Event "onShow" fired for item '+position+'.<br />').scrollTop(10000);
+							},
+							onHide: function(){
+								var d = new Date();
+								con.append(d.getHours()+':'+d.getMinutes()+':'+d.getSeconds()+'.'+d.getMilliseconds()+' - Event "onHide" fired.<br /><p>-----------------------------------</p>').scrollTop(10000);
+							},
+							onEnterFullScreen: function(){
+								var d = new Date();
+								con.append(d.getHours()+':'+d.getMinutes()+':'+d.getSeconds()+'.'+d.getMilliseconds()+' - Event "onEnterFullScreen" fired.<br />').scrollTop(10000);
+							},
+							onExitFullScreen: function(){
+								var d = new Date();
+								con.append(d.getHours()+':'+d.getMinutes()+':'+d.getSeconds()+'.'+d.getMilliseconds()+' - Event "onExitFullScreen" fired.<br />').scrollTop(10000);
+							},
+							onBeforeLoad: function(api, position){
+								var d = new Date();
+								con.append(d.getHours()+':'+d.getMinutes()+':'+d.getSeconds()+'.'+d.getMilliseconds()+' - Event "onBeforeLoad" fired for item '+position+'.<br />').scrollTop(10000);
+							},
+							onAfterLoad: function(api, position){
+								var d = new Date();
+								con.append(d.getHours()+':'+d.getMinutes()+':'+d.getSeconds()+'.'+d.getMilliseconds()+' - Event "onAfterLoad" fired for item '+position+'.<br />').scrollTop(10000);
+							},
+							onBeforeChange: function(){
+								var d = new Date();
+								con.append(d.getHours()+':'+d.getMinutes()+':'+d.getSeconds()+'.'+d.getMilliseconds()+' - Event "onBeforeChange" fired.<br />').scrollTop(10000);
+							},
+							onAfterChange: function(){
+								var d = new Date();
+								con.append(d.getHours()+':'+d.getMinutes()+':'+d.getSeconds()+'.'+d.getMilliseconds()+' - Event "onAfterChange" fired.<br />').scrollTop(10000);
+							}
+						}
+					}
+				);
+				return false;
+			});
+			// End of the "Advanced Examples - Events" Examples
+		});
+		
+		$(window).load(function(){
+			$('[data-spy="scroll"]').each(function () {
+				var t = $(this);
+				t.scrollspy();
+				$(window).resize(function(){
+					t.scrollspy('refresh');
+					$(this).trigger('scroll');
+				});
+			});
+		});
+		
+		window.___gcfg = {lang: "en"};
+		(function() {
+			var po = document.createElement("script"); po.type = "text/javascript"; po.async = true;
+			po.src = "https://apis.google.com/js/plusone.js";
+			var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(po, s);
+		})();
+		
+    </script>
+  </body>
+</html>

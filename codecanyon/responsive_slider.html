@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+	<title>iLightBox &middot; Revolutionary Lightbox Plugin</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Hemn Chawroka" />
+
+    <!-- Le styles -->
+	<link href="assets/css/bootstrap.css" rel="stylesheet">
+	<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="assets/css/docs.css" rel="stylesheet">
+	<link href="src/css/ilightbox.css" rel="stylesheet">
+    <style>
+
+    /* GLOBAL STYLES
+    -------------------------------------------------- */
+    /* Padding below the footer and lighter body text */
+
+    body {
+      padding-top: 0;
+      padding-bottom: 40px;
+      color: #5a5a5a;
+    }
+	
+	.jumbotron {
+	  background: #793e3a; /* Old browsers */
+	  background: -moz-linear-gradient(45deg,  #793e3a 0%, #170f3e 100%); /* FF3.6+ */
+	  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#793e3a), color-stop(100%,#170f3e)); /* Chrome,Safari4+ */
+	  background: -webkit-linear-gradient(45deg,  #793e3a 0%,#170f3e 100%); /* Chrome10+,Safari5.1+ */
+	  background: -o-linear-gradient(45deg,  #793e3a 0%,#170f3e 100%); /* Opera 11.10+ */
+	  background: -ms-linear-gradient(45deg,  #793e3a 0%,#170f3e 100%); /* IE10+ */
+	  background: linear-gradient(45deg,  #793e3a 0%,#170f3e 100%); /* W3C */
+	  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#793e3a', endColorstr='#170f3e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	}
+	
+	.subhead .btn {
+		padding: 11px 19px;
+		font-size: 24px;
+		font-weight: 200;
+		color: #fff;
+		border: 0;
+		-webkit-border-radius: 6px;
+		-moz-border-radius: 6px;
+		border-radius: 6px;
+		-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+		-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+		box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+		-webkit-transition: none;
+		-moz-transition: none;
+		transition: none;
+		margin-top: 18px;
+	}
+
+
+
+    /* CUSTOMIZE THE NAVBAR
+    -------------------------------------------------- */
+
+    /* Special class on .container surrounding .navbar, used for positioning it into place. */
+    .navbar-wrapper {
+      position: fixed;
+      z-index: 1035;
+	  top: 0;
+	  left: 0;
+	  right: 0;
+    }
+
+    .navbar  {
+      margin-bottom: 0;
+    }
+
+    /* Remove border and change up box shadow for more contrast */
+    .navbar .navbar-inner {
+      border: 0;
+      -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.5);
+         -moz-box-shadow: 0 2px 10px rgba(0,0,0,.5);
+              box-shadow: 0 2px 10px rgba(0,0,0,.5);
+			  
+      -webkit-border-radius: 0 0 4px 4px;
+         -moz-border-radius: 0 0 4px 4px;
+              border-radius: 0 0 4px 4px;
+    }
+
+    /* Downsize the brand/project name a bit */
+    .navbar .brand {
+      padding: 14px 20px 16px; /* Increase vertical padding to match navbar links */
+      font-size: 16px;
+      font-weight: bold;
+      text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+    }
+
+    /* Navbar links: increase padding for taller navbar */
+    .navbar .nav > li > a {
+      padding: 15px 20px;
+    }
+
+    /* Offset the responsive button for proper vertical alignment */
+    .navbar .btn-navbar {
+      margin-top: 10px;
+    }
+
+
+
+    /* CUSTOMIZE THE NAVBAR
+    -------------------------------------------------- */
+	.masthead {
+		padding-top: 110px;
+		padding-bottom: 60px;
+	}
+
+
+
+    /* MARKETING CONTENT
+    -------------------------------------------------- */
+	.subhead {
+		padding-top: 90px;
+		padding-bottom: 40px;
+	}
+
+    /* Center align the text within the three columns below the carousel */
+    .marketing .span4, .marketing .span4 p, .marketing .marketing-byline {
+      text-align: center;
+    }
+	.marketing .marketing-byline.left {
+	  text-align: left;
+      margin-top: -50px;
+    }
+    .marketing h2 {
+      font-weight: normal;
+    }
+	.marketing p, .hero-unit {
+	  text-align: left;
+	}
+
+
+    /* Featurettes
+    ------------------------- */
+
+    .featurette-divider {
+      margin: 80px 0; /* Space out the Bootstrap <hr> more */
+    }
+    .featurette {
+      overflow: hidden; /* Vertically center images part 2: clear their floats. */
+	  text-align: left;
+    }
+    .featurette-image {
+      margin-top: -120px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
+    }
+
+    /* Give some space on the sides of the floated elements so text doesn't run right into it. */
+    .featurette-image.pull-left {
+      margin-right: 40px;
+    }
+    .featurette-image.pull-right {
+      margin-left: 40px;
+    }
+
+    /* Thin out the marketing headings */
+    .featurette-heading {
+      font-size: 50px;
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -1px;
+	  margin-bottom: 60px !important;
+    }
+	
+	.thumbnail > img {
+	  margin: 0 auto;
+	}
+
+
+
+    /* RESPONSIVE CSS
+    -------------------------------------------------- */
+	
+	@media (max-width: 1200px) {
+	  .slider {
+	    height: 420px;
+	  }
+	}
+
+    @media (max-width: 979px) {
+
+		.navbar-wrapper {
+          position: relative;
+		  margin-top: 20px;
+		}
+
+      .container.navbar-wrapper {
+        margin-bottom: 0;
+        width: auto;
+      }
+      .navbar-inner {
+        border-radius: 0;
+        margin: -20px 0;
+      }
+
+      .featurette {
+        height: auto;
+        padding: 0;
+      }
+      .featurette-image.pull-left,
+      .featurette-image.pull-right {
+        display: block;
+        float: none;
+        max-width: 40%;
+        margin: 0 auto 20px;
+      }
+	  .slider {
+	    height: 260px;
+	  }
+    }
+
+
+    @media (max-width: 767px) {
+
+      .navbar-inner {
+        margin: -20px;
+      }
+
+      .marketing .span4 + .span4 {
+        margin-top: 40px;
+      }
+
+      .featurette-heading {
+        font-size: 30px;
+      }
+      .featurette .lead {
+        font-size: 18px;
+        line-height: 1.5;
+      }
+	  .slider {
+	    height: 260px;
+	  }
+
+    }
+    </style>
+	<!--[if IE 7]>
+    <style>
+	.jumbotron {
+	  background: #47263C url(assets/img/bs-docs-masthead-pattern.png) repeat center center;
+	  filter: none;
+	}
+	
+    .navbar-wrapper {
+      width: 100%;
+    }
+    </style>
+	<![endif]-->
+	
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+
+  <body data-spy="scroll" data-target=".navbar">
+
+
+
+    <!-- NAVBAR
+    ================================================== -->
+    <!-- Wrap the .navbar in .container to center it on the page and provide easy way to target it with .navbar-wrapper. -->
+    <div class="container navbar-wrapper">
+
+      <div class="navbar navbar-inverse">
+        <div class="navbar-inner">
+          <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://ilightbox.net/">iLightBox</a>
+          <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Images <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="index.html#singleimage">Single Image</a></li>
+                  <li><a href="index.html#imagegallery">Image Gallery</a></li>
+                  <li><a href="index.html#deeplinking_looping">Deeplinking & Infinite</a></li>
+                  <li><a href="index.html#advanced_images">Advanced Examples</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">HTML <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="index.html#html_inline_content">Inline Content</a></li>
+                  <li><a href="index.html#html_ajax">Ajax</a></li>
+                  <li><a href="index.html#html_flash">Flash / SWF</a></li>
+                  <li><a href="index.html#html_iframe">IFRAME</a></li>
+                  <li><a href="index.html#html_advanced_examples">Advanced Examples</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Videos <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="index.html#video_simple">Simple Usage</a></li>
+                  <li><a href="index.html#video_advanced_examples">Advanced Examples</a></li>
+                </ul>
+              </li>
+              <li class="dropdown active">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Advanced Examples <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="index.html#advanced_mixed">Mixed Contents & Google Maps via API</a></li>
+                  <li><a href="index.html#advanced_events">Events</a></li>
+                  <li><a href="index.html#galley_with_slideshow">Image Gallery with Slideshow</a></li>
+                  <li><a href="index.html#advanced_dialogues">Alert/Confirm/Prompt</a></li>
+                  <li><a href="plus_comment.html">Image Preview + Sidebar</a></li>
+                  <li><a href="infinite_scroll.html">Infinite Scroll Gallery</a></li>
+                  <li class="active"><a href="responsive_slider.html">Responsive Slider!</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Support <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="http://iprodev.com/ilightbox/discussion.html">Discussion</a></li>
+                  <li><a href="http://iprodev.com/ilightbox/faq.html">Frequently Asked Questions</a></li>
+                  <li><a href="http://iprodev.com/ilightbox/changelog.html">Changelog</a></li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="nav pull-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
+                <ul class="dropdown-menu" id="projects_container">
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!-- /.navbar-inner -->
+      </div><!-- /.navbar -->
+
+    </div><!-- /.container -->
+
+<div class="jumbotron subhead">
+  <div class="container">
+    <a href="http://goo.gl/nl0Bg" class="btn btn-primary btn-large pull-right">Download iLightBox&nbsp;&nbsp;<i class="icon-download-alt icon-white"></i></a>
+    <h1>iLighBox</h1>
+  </div>
+</div>
+
+<div class="bs-docs-social">
+  <div class="container">
+    <ul class="bs-docs-social-buttons">
+      <li>
+        <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fiprodev.com%2Filightbox%2F&amp;send=false&amp;layout=button_count&amp;width=150&amp;show_faces=true&amp;font&amp;colorscheme=light&amp;action=recommend&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:150px; height:21px;" allowTransparency="true"></iframe>
+      </li>
+      <li>
+        <div class="g-plusone" data-size="medium" data-href="http://iprodev.com/ilightbox/"></div>
+      </li>
+      <li class="follow-btn">
+        <a href="https://twitter.com/chawroka" class="twitter-follow-button" data-link-color="#0069D6" data-show-count="true">Follow @chawroka</a>
+      </li>
+      <li class="tweet-btn">
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://iprodev.com/ilightbox/" data-count="horizontal" data-via="chawroka" data-related="@chawroka:iLightBox - Revolutionary Lightbox for creative and ambitious web designers and developers.">Tweet</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+<div class="container marketing">
+<br>
+<br>
+      <!-- START THE FEATURETTES -->
+
+      <div class="featurette">
+        <h2 class="featurette-heading">Advanced Examples <span class="muted">&middot; Responsive Slider!</span></h2>
+		<p class="marketing-byline left">In this example you can create a responsive slider with touch compatibility very easily by iLightBox.</p>
+		<iframe src="assets/ajax/inline_slider.html" width="100%" height="560" frameborder="0" class="slider" allowFullScreen="true" webkitAllowFullScreen="true" mozAllowFullScreen="true"></iframe>
+      </div>
+
+      <!-- /END THE FEATURETTES -->
+
+
+      <hr class="featurette-divider" id="last_divider">
+
+      <!-- FOOTER -->
+      <footer>
+        <p class="pull-right"><a href="#home">Back to top</a></p>
+        <p align="left">&copy; 2012 <a href="http://iprodev.com/">Hemn Chawroka</a>.</p>
+      </footer>
+
+    </div><!-- /.container -->
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+	<script src="assets/js/jquery.js"></script>
+	<script type="text/javascript" async defer src="http://iprodev.com/projects.php?p=ilightbox"></script>
+	<script src="assets/js/bootstrap-dropdown.js"></script>
+	<script src="assets/js/bootstrap-tooltip.js"></script>
+	<script src="assets/js/bootstrap-popover.js"></script>
+    <script src="assets/js/bootstrap-collapse.js"></script>
+	<script>
+		window.___gcfg = {lang: "en"};
+		(function() {
+			var po = document.createElement("script"); po.type = "text/javascript"; po.async = true;
+			po.src = "https://apis.google.com/js/plusone.js";
+			var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(po, s);
+		})();
+	</script>
+  </body>
+</html>
