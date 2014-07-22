@@ -579,7 +579,7 @@ body {
 .master-container {
   min-height: 100%;
   margin-bottom: -150px;
-  padding-top: 60px;
+  padding-top: 0px;
   background: white;
 }
 .master-container:after {
@@ -599,7 +599,7 @@ body {
 }
 @media all and (min-width: 769px) {
   .master-container {
-    padding-top: 80px;
+    padding-top: 0px;
   }
   .has-sidebar .master-container {
     margin-left: 320px;

@@ -6,6 +6,14 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
     <script type="text/javascript" src="scripts/jquery.mixitup.js"></script>
 
+    
+     <link rel="stylesheet" type="text/css" href="/codecanyon/src/css/ilightbox.css"/>
+
+
+    <script type="text/javascript" src="/codecanyon/src/js/jquery.requestAnimationFrame.js"></script>
+    <script type="text/javascript" src="/codecanyon/src/js/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="/codecanyon/src/js/ilightbox.packed.js"></script> 
+
 
     <script type="text/javascript" src="https://tableau.russellchristopher.org/javascripts/api/tableau_v8.js"></script>    
     
@@ -17,10 +25,31 @@ function initialize()
         console.log("Here");
         $('#SandBox').mixItUp();     
 
-    }
-    
+        $('img').on("click", function (e) {      
+            $.iLightBox([
+              {
+                URL: "https://tableau.russellchristopher.org/t/SkunkWorks/views/" + $(this).attr("vpath"),
+                type: 'iframe',
+                options: {
+                  width: $(this).attr("vizwidth"),
+                  height: $(this).attr("vizheight")
+                },
 
-    </script>
+              }
+            ],
+            {skin: "metro-white" , 
+             controls: { 
+                 fullscreen: false 
+             } 
+            }
+             );
+          });
+            
+            
+ }
+
+    
+ </script>
 <div class="master-container">
 <section>
 	<div class="control-bar sandbox-control-bar">
@@ -40,18 +69,18 @@ function initialize()
 		</div>
 	</div>
 	<div id="SandBox" class="sandbox">
-		<div class="mix category-1" data-value="1"><img src="img/thumb.jpg" alt="some_text"></div>
-		<div class="mix category-1" data-value="2">2</div>
-		<div class="mix category-2" data-value="3">3</div>
-		<div class="mix category-1" data-value="4">4</div>
-		<div class="mix category-2" data-value="5">5</div>
-		<div class="mix category-2" data-value="6">6</div>
-		<div class="mix category-1" data-value="7">7</div>
-		<div class="mix category-2" data-value="8">8</div>
-		<div class="mix category-2" data-value="9">9</div>
-		<div class="mix category-1" data-value="10">10</div>
-		<div class="mix category-2" data-value="11">11</div>
-		<div class="mix category-2" data-value="12">12</div>
+		<div class="mix category-1" data-value="1"><img vpath="/BMD-TR-WEB/Dashboard4" vizheight="436" vizwidth="950" src="img/thumb1.jpg"  alt="some_text"></div>
+		<div class="mix category-1" data-value="2"><img vpath="/Ebolaoutbreakschronology1976-2014/ChronologyofEbolaoutbreaksashboard1" vizheight="700" vizwidth="700" src="img/thumb2.jpg" alt="some_text"></div>
+		<div class="mix category-2" data-value="3"><img vpath="/ElectionResults2009vs2014/IndianElections2009-2014" vizheight="1400" vizwidth="1200" src="img/thumb3.jpg" alt="some_text"></div>
+		<div class="mix category-1" data-value="4"><img vpath="/ChicagoMarathon-BattleoftheSexes/ChicagoMarathon-BattleoftheSexes" vizheight="600" vizwidth="700" src="img/thumb4.jpg" alt="some_text"></div>
+		<div class="mix category-2" data-value="5"><img vpath="/FilmDirectors/MovieDirectors" vizheight="600" vizwidth="730" src="img/thumb5.jpg" alt="some_text"></div>
+		<div class="mix category-2" data-value="6"><img vpath="/FINALDOW307-2/HistoryoftheDOW30" vizheight="850" vizwidth="1100"  src="img/thumb6.jpg" alt="some_text"></div>
+		<div class="mix category-1" data-value="7"><img vpath="/EuropeNatgas/RelyingonRussia" vizheight="800" vizwidth="550"  src="img/thumb7.jpg" alt="some_text"></div> 
+		<div class="mix category-2" data-value="8"><img vpath="/DivvyChallenge/Wheredothebikesgo" vizheight="950" vizwidth="1150" src="img/thumb8.jpg" alt="some_text"></div>
+		<div class="mix category-2" data-value="9"><img vpath="/WheredoesUSforeignaidgo-/Dashboard1" vizheight="1100" vizwidth="1300"   src="img/thumb9.jpg" alt="some_text"></div>
+		<div class="mix category-1" data-value="10"><img vpath="/MinimumWage/MinimumWage-StoryPointsEdition" vizheight="666" vizwidth="1016"  src="img/thumb10.jpg" alt="some_text"></div>
+		<div class="mix category-2" data-value="11"><img vpath="/Stairs/StairsoftheCity" vizheight="850" vizwidth="1180"   src="img/thumb11.jpg" alt="some_text"></div>
+		<div class="mix category-2" data-value="12"><img vpath="/WorkingMothers/WorkingMothersStateRates" vizheight="600" vizwidth="800"  src="img/thumb12.jpg" alt="some_text"></div>
 		<div class="gap"></div>
 		<div class="gap"></div>
 	</div>
