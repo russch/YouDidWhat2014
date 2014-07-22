@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    
+    <link rel="stylesheet" type="text/css" href="/css/MixUp.css"/>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/jquery.mixitup.js"></script>
+
+
+    <script type="text/javascript" src="https://tableau.russellchristopher.org/javascripts/api/tableau_v8.js"></script>    
+    
+ 
+<script>
+    
+function initialize()
+    {
+        console.log("Here");
+        $('#SandBox').mixItUp();     
+
+    }
+    
+
+    </script>
+<div class="master-container">
+<section>
+	<div class="control-bar sandbox-control-bar">
+		<div class="group">
+			<label>Sort:</label>
+			<span class="btn sort active" data-sort="random">Random</span>
+			<span class="btn sort" data-sort="value:asc">Ascending</span>
+			<span class="btn sort" data-sort="value:desc">Descending</span>
+		</div>
+		<div class="group">
+			<label>Filter:</label>
+			<span class="btn filter active" data-filter="all">All</span>
+			<span class="btn filter" data-filter=".category-1">Blue</span>
+			<span class="btn filter" data-filter=".category-2">Green</span>
+			<span class="btn filter" data-filter="none">None</span>
+
+		</div>
+	</div>
+	<div id="SandBox" class="sandbox">
+		<div class="mix category-1" data-value="1"><img src="img/thumb.jpg" alt="some_text"></div>
+		<div class="mix category-1" data-value="2">2</div>
+		<div class="mix category-2" data-value="3">3</div>
+		<div class="mix category-1" data-value="4">4</div>
+		<div class="mix category-2" data-value="5">5</div>
+		<div class="mix category-2" data-value="6">6</div>
+		<div class="mix category-1" data-value="7">7</div>
+		<div class="mix category-2" data-value="8">8</div>
+		<div class="mix category-2" data-value="9">9</div>
+		<div class="mix category-1" data-value="10">10</div>
+		<div class="mix category-2" data-value="11">11</div>
+		<div class="mix category-2" data-value="12">12</div>
+		<div class="gap"></div>
+		<div class="gap"></div>
+	</div>
+</section>
+</div>
+   
+    <script type="text/javascript">
+        // Initialize the app on document ready.
+        $(initialize);
+    </script>
+  </html>
