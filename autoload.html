@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<link rel="stylesheet" type="text/css" href="/css/autoload.css" />
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script src="scripts/jquery.classyloader.js"></script>
+<script src="scripts/jquery.timer.js"></script>
+
+
+
+
+
+<script type="text/javascript" src="https://tableau.russellchristopher.org/javascripts/api/tableau_v8.js"></script>
+
+<body>
+    <div id="container">
+        <div id="div1" class="box1" style="left: 0px; top: 0px;"></div>
+        <div id="div2" class="box2" style="left: 0px; top: 0px;"></div>
+        <div class="clearfix">
+            <canvas class="loader"></canvas>
+        </div>
+    </div>
+
+
+
+</body>
+<script>
+var viz;    
+    
+    function initialize() {
+
+        var placeholderDiv = document.getElementById("div2");
+        var url = "http://public.tableausoftware.com/views/TheTime/Dashboard1?:embed=y&:display_count=no";
+        var options = {
+            width: 900,
+            height: 600,
+            hideTabs: true,
+            hideToolbar: true,
+            onFirstInteractive: function() {
+
+
+                $('.loader').ClassyLoader({
+                    height: 100,
+                    width: 100,
+                    percentage: 100,
+                    speed: 50,
+                    fontSize: '20px',
+                    diameter: 35,
+                    lineColor: 'rgba(155,155,155,1)',
+                    remainingLineColor: 'rgba(200,200,200,0.4)',
+                    lineWidth: 10
+                });
+
+            var timer = $.timer(function() {
+                foo();
+            });
+            timer.set({ time : 5000, autostart : true });
+                    
+            }
+        }
+
+        try {
+            viz = new tableauSoftware.Viz(placeholderDiv, url, options);
+        } catch (e) {
+            alert(e);
+        }
+    }
+
+    function foo() {
+        
+        viz.refreshDataAsync();
+        
+        $('.loader').ClassyLoader({
+            height: 100,
+            width: 100,
+            percentage: 100,
+            speed: 50,
+            fontSize: '20px',
+            diameter: 35,
+            lineColor: 'rgba(155,155,155,1)',
+            remainingLineColor: 'rgba(200,200,200,0.4)',
+            lineWidth: 10
+        });
+    }
+</script>
+
+
+<script type="text/javascript">
+    // Initialize the app on document ready.
+    $(initialize);
+</script>
+
+</html>

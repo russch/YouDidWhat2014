@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<link rel="stylesheet" type="text/css" href="css/autoload.css" />
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/themes/smoothness/jquery-ui.css" />
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+<script src="scripts/jquery.classyloader.js"></script>
+<script src="scripts/jquery.timer.js"></script>
+
+
+
+
+
+<script type="text/javascript" src="https://tableau.russellchristopher.org/javascripts/api/tableau_v8.js"></script>
+
+<body>
+    <div id="container">
+        <div id="div1" class="box1" style="left: 0px; top: 0px;"></div>
+        <div id="div2" class="box2" style="left: 0px; top: 0px;"></div>
+        <div class="clearfix">
+            <canvas class="loader"></canvas>
+        </div>
+    </div>
+
+
+
+</body>
+<script>
+    var viz1, viz2, activeDiv = 2, refreshInterval = 22000;
+
+    function initialize() {
+        
+        // Timer for spinner / Progress meter - reset ever x seconds & switch visible divs
+        var timer = $.timer(function() {
+            reload();
+        });
+        
+        // This timer waits for the period interval and then fires, 
+        // refreshing whichever viz is not currently visible.
+
+        var timerRefresh = $.timer(function() {
+            refreshNonActiveViz();
+        });
+        
+        // This timer fires once and once only. It waits
+        // Until 1/2 the interval has expired before kicking off the 
+        // timerRefresh job which does "real" work 
+        
+        var timerPause = $.timer(function(){
+            // Refresh the non-active viz
+            refreshNonActiveViz();
+            
+            // Start the timer which will refresh the non-active viz
+            timerRefresh.set({
+                        time: (refreshInterval),
+                        autostart: true
+                    });
+        });
+        
+
+        var placeholderDiv = document.getElementById("div2");
+        var placeholderDiv2 = document.getElementById("div1");
+        var url = "https://tableau.russellchristopher.org/t/SkunkWorks/views/WhatTimeIsItv2/WWReach";
+        var options = {
+            width: 900,
+            height: 600,
+            hideTabs: true,
+            hideToolbar: true,
+            onFirstInteractive: function() {
+
+                // Ready the Progress Meter
+                initLoader();
+
+                // Start the timer which will cause the progress meter to reset every <interval> ms
+                timer.set({
+                    time: refreshInterval,
+                    autostart: true
+                });
+
+
+                // Start the single-run timer which waits for 1/2 the interval time, then 
+                // kicks off the regular timer that refreshes the non-active div
+                timerPause.once((refreshInterval/2));
+                
+            }
+        }
+
+        try {
+            viz2 = new tableauSoftware.Viz(placeholderDiv, url, options);
+            viz1 = new tableauSoftware.Viz(placeholderDiv2, url, options);
+        } catch (e) {
+            alert(e);
+        }
+    }
+
+    function reload() {
+
+        // Switch active div to one which has just been refreshed
+        if (activeDiv == 2) {
+            activeDiv = 1;
+            $('#div1').zIndex(1);
+            $('#div2').zIndex(0);            
+       }
+        else
+        {
+            activeDiv = 2;
+            $('#div1').zIndex(0);
+            $('#div2').zIndex(1);     
+        }
+        
+        // reset loader
+        initLoader();
+    }
+    
+    function refreshNonActiveViz()
+    {
+        if (activeDiv == 2){
+            viz1.refreshDataAsync();
+            console.log ("refreshing div 1");
+        }
+        else
+        {
+            viz2.refreshDataAsync();
+            console.log("refreshing div 2");
+        }
+        
+    }
+    
+    
+    function initLoader(){
+        
+        $('.loader').ClassyLoader({
+                    height: 100,
+                    width: 100,
+                    percentage: 100,
+                    speed: (refreshInterval / 100), 
+                    fontSize: '20px',
+                    showText: false,
+                    diameter: 35,
+                    lineColor: 'rgba(155,155,155,1)',
+                    remainingLineColor: 'rgba(200,200,200,0.4)',
+                    lineWidth: 10
+                });
+        
+    }
+    
+</script>
+
+
+<script type="text/javascript">
+    // Initialize the app on document ready.
+    $(initialize);
+</script>
+
+</html>

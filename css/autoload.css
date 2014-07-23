@@ -1,0 +1,32 @@
+#container {
+    position: relative;
+    height: 600px;
+    width: 900px;
+    border: 0px solid black;
+    margin: 25px;
+}
+
+.box1 {
+    position: absolute;
+    border: 0px solid red;
+    height: 600px;
+    width: 900px;
+    
+
+}
+.box2 {
+    position: absolute;
+    border: 0px solid blue;
+    height: 600px;
+    width: 900px;
+    float: left;
+    z-index: 1;
+}
+.clearfix {
+    position: relative;
+    padding-left: 500px;
+    padding-top: 55%;
+    float: right;
+    z-index: 2;
+
+}
