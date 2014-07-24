@@ -17,7 +17,7 @@
     <div id="container">
         <div id="div1" class="box1" style="left: 0px; top: 0px;"></div>
         <div id="div2" class="box2" style="left: 0px; top: 0px;"></div>
-        <div class="clearfix">
+        <div class="clearfix" style="padding-top: 52%;">
             <canvas class="loader"></canvas>
         </div>
     </div>
@@ -26,7 +26,9 @@
 
 </body>
 <script>
-var viz;    
+// Set refreshInterval in milliseconds.
+    
+var viz, refreshInterval = 5000, firstRun = true;
     
     function initialize() {
 
@@ -40,22 +42,13 @@ var viz;
             onFirstInteractive: function() {
 
 
-                $('.loader').ClassyLoader({
-                    height: 100,
-                    width: 100,
-                    percentage: 100,
-                    speed: 50,
-                    fontSize: '20px',
-                    diameter: 35,
-                    lineColor: 'rgba(155,155,155,1)',
-                    remainingLineColor: 'rgba(200,200,200,0.4)',
-                    lineWidth: 10
-                });
+            initLoader()
 
             var timer = $.timer(function() {
-                foo();
+            
+                initLoader();
             });
-            timer.set({ time : 5000, autostart : true });
+            timer.set({ time : refreshInterval, autostart : true });
                     
             }
         }
@@ -67,21 +60,31 @@ var viz;
         }
     }
 
-    function foo() {
+    function initLoader(){
         
-        viz.refreshDataAsync();
+        //Don't run the first time. 
+        
+        if (firstRun == false)
+        { 
+            viz.refreshDataAsync();
+        }
+        else
+        {
+            firstRun=false;
+        }
         
         $('.loader').ClassyLoader({
-            height: 100,
-            width: 100,
-            percentage: 100,
-            speed: 50,
-            fontSize: '20px',
-            diameter: 35,
-            lineColor: 'rgba(155,155,155,1)',
-            remainingLineColor: 'rgba(200,200,200,0.4)',
-            lineWidth: 10
-        });
+                    height: 100,
+                    width: 100,
+                    percentage: 100,
+                    speed: (refreshInterval / 100), 
+                    fontSize: '20px',
+                    diameter: 35,
+                    lineColor: 'rgba(155,155,155,1)',
+                    remainingLineColor: 'rgba(200,200,200,0.4)',
+                    lineWidth: 10
+                });
+        
     }
 </script>
 

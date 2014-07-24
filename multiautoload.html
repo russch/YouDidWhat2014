@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<link rel="stylesheet" type="text/css" href="css/autoload.css" />
+<link rel="stylesheet" type="text/css" href="css/multiautoload.css" />
 <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/themes/smoothness/jquery-ui.css" />
 
 
@@ -29,6 +29,7 @@
 
 </body>
 <script>
+    // Set refreshInterval in milliseconds.
     var viz1, viz2, activeDiv = 2, refreshInterval = 22000;
 
     function initialize() {
@@ -63,12 +64,13 @@
 
         var placeholderDiv = document.getElementById("div2");
         var placeholderDiv2 = document.getElementById("div1");
-        var url = "https://tableau.russellchristopher.org/t/SkunkWorks/views/WhatTimeIsItv2/WWReach";
+        var url = "https://tableau.russellchristopher.org/t/SkunkWorks/views/WhatTimeIsItv2/WWReach?:refresh=yes";
         var options = {
             width: 900,
             height: 600,
             hideTabs: true,
             hideToolbar: true,
+            refresh: "yes",
             onFirstInteractive: function() {
 
                 // Ready the Progress Meter

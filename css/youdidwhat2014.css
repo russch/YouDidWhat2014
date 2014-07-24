@@ -1,0 +1,48 @@
+html
+{
+    font-family: 'Lato', sans-serif;
+
+}
+
+.d1
+{
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    font-size: 70px;
+    font-weight: bold;
+    padding: 3px 3px 3px 3px;
+    
+    
+    
+}
+.d2
+
+{
+    font-size: 40px;
+    text-align: center;
+    padding-top 10px;
+    
+}
+
+a
+{
+    list-style-type: none;
+    padding-top: 3px;
+    align-content: center;
+    font-size: 25px;
+    color: #6D6968;
+    text-decoration: none;
+    
+}
+
+.anchor {
+    text-align: center;
+    display: block;
+    padding: 30px;
+}
+
+a:hover
+{ 
+   
+    color: #E0E0E0;
+}
