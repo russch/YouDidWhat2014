@@ -18,8 +18,6 @@
     <script>
         var viz, agent, avoidDupe;
 
-
-
         function initializeViz() {
             var placeholderDiv = document.getElementById("content");
             var url = "https://tableau.russellchristopher.org/t/SkunkWorks/views/CerebralGameSelling/FloridaActivity";
@@ -47,126 +45,122 @@
 
         function initClippy() {
 
-              clippy.load('Clippy', function(_agent) {
-                    agent = _agent;
-                    agent.show();
-                    agent.moveTo(500, 200);
-                    agent.speak("Yes, it's me.");
-                    agent.play("LookRight");
-                    agent.speak("You're not hallucinating.");
-                    agent.moveTo(100, 100);
-                    agent.speak("You paying attention?");
-                    agent.play('GetAttention');
-                    agent.moveTo(80, 280);
-                    agent.play("Writing");
-                    agent.moveTo(250, 450);
-                    agent.play("GestureUp", 5000, function(){selectPie()});
+                      clippy.load('Clippy', function(_agent) {
+                            agent = _agent;
+                            agent.show();
+                            agent.moveTo(500, 200);
+                            agent.speak("Yes, it's me.");
+                            agent.play("LookRight");
+                            agent.speak("You're not hallucinating.");
+                            agent.moveTo(100, 100);
+                            agent.speak("You paying attention?");
+                            agent.play('GetAttention');
+                            agent.moveTo(80, 280);
+                            agent.play("Writing");
+                            agent.moveTo(250, 450);
+                            agent.play("GestureUp", 5000, function(){selectPie()});
 
-                    agent.play("LookUp", 1000);
-                    agent.speak("Look, poor Adventure games sales.");
-                    agent.play("LookRight", 500);
-                    agent.speak("Please select a city selling Adventure games to investigate.");
-                    
-                });
+                            agent.play("LookUp", 1000);
+                            agent.speak("Look, poor Adventure games sales.");
+                            agent.play("LookRight", 500);
+                            agent.speak("Please select a city selling Adventure games to investigate.");
 
-                   
+                        });
+
+
+                    }   
+
+        function selectPie(){ 
+            //Select Pie Slice
+            mainWorkbook = viz.getWorkbook(); 
+            var newSheet = mainWorkbook.getActiveSheet().getWorksheets().get("Pie"); 
+            // Select a pie slice, then start listening for city selection
+            newSheet.selectMarksAsync("Genre", "Adventure", "ADD");
+            viz.addEventListener("marksselection", onMarksSelection);
+
+        }    
+
+        function onSuccess(result) {
+
+
+            var selectedMarks = result;
+            var alertOutput = "";
+            // Since this event will get fired even when marks (like a pie slice) are de-selected, 
+            // Only continue if there are marks which HAVE been selected...
+            if (selectedMarks.length !== 0) 
+             {
+
+                 // Get a single selected Mark
+                 var pairs = selectedMarks[0].getPairs();
+                 console.log('Pairs: ' + pairs.length);
+                 // Get selected City
+                 alertOutput = pairs[0].value;
+
+                 if (pairs[1].value != "Adventure" ) {
+                    avoidDupe++;
+                     console.log("Dupe :" + avoidDupe);
+                     if (avoidDupe == 1) {
+                         agent.moveTo(310,450);
+                         agent.play("IdleHeadScratch",700);
+                         agent.speak("Hey, you chose a city selling " + pairs[1].value + " games, not Adventure. Try again!");
+                        }
+                     setTimeout(function(){ 
+                         newSheet = mainWorkbook.getActiveSheet().getWorksheets().get("Pie"); 
+                         // Select the Adventure pie slice, 
+                         newSheet.selectMarksAsync("Genre", "Adventure", "ADD");
+
+                     }, 8000);
+                        return;
+
+                 }
+
+                viz.removeEventListener("marksselection", onMarksSelection);
+
+                 // Mark selection events being fired more than once may cause too many Merlins to load
+                 // Count the number of Clippys shown so that only 2 will ever be displayed.
+                 if (($('.clippy').length) < 2) {         
+
+                 clippy.load('Merlin', function(agent2) {
+                            console.log('load');                 
+                            agent2.show();
+                            agent2.moveTo(750, 300);
+                            agent2.speak(alertOutput + ' is an excellent choice.');
+                            agent2.play("Surprised",500);
+                            agent2.play("Thinking",500);
+                            agent2.play("DoMagic2",750, function(){ viz.getWorkbook().activateSheetAsync("Sales Dashboard");});
+                            agent2.moveTo(750,150);//150
+                            agent2.speak("Look, I can throw my voice, too.");
+                            agent2.play("LookRightBlink", 500, function () {
+
+                                agent2.speak( " What's going on in Seattle?"); 
+                                newSheet = mainWorkbook.getActiveSheet().getWorksheets().get("Map"); 
+                                // Select Seattle
+                                newSheet.selectMarksAsync("State", "Washington", "ADD").then( function (){
+
+                                    agent2.play("Congratulate",2000);
+                                    agent2.play("Congratulate_2");
+                                    agent2.play("Congratulate_2");
+                                    agent2.speak("You've been a lovely audience");
+                                    agent2.play("Hide");   
+                                });             
+
+                            });                  
+                    });
+                 }
             }
-        
-   
-        
-function selectPie(){ 
-    //Select Pie Slice
-    mainWorkbook = viz.getWorkbook(); 
-    var newSheet = mainWorkbook.getActiveSheet().getWorksheets().get("Pie"); 
-    // Select a pie slice, then start listening for city selection
-    newSheet.selectMarksAsync("Genre", "Adventure", "ADD");
-    viz.addEventListener("marksselection", onMarksSelection);
-     
-}
-     
-        
-function onSuccess(result) {
-    
+        }
 
-    var selectedMarks = result;
-    var alertOutput = "";
-    // Since this event will get fired even when marks (like a pie slice) are de-selected, 
-    // Only continue if there are marks which HAVE been selected...
-    if (selectedMarks.length !== 0) 
-     {
+        function onError(message) {
+            alert("Error: '" + message + "'");
+        }   
 
-         // Get a single selected Mark
-         var pairs = selectedMarks[0].getPairs();
-         console.log('Pairs: ' + pairs.length);
-         // Get selected City
-         alertOutput = pairs[0].value;
-         
-
-         console.log("Dupe :" + avoidDupe);
-         if (pairs[1].value != "Adventure" ) {
-            avoidDupe++;
-             console.log("Dupe :" + avoidDupe);
-             if (avoidDupe == 1) {
-                 agent.moveTo(310,450);
-                 agent.play("IdleHeadScratch",700);
-                 agent.speak("Hey, you chose a city selling " + pairs[1].value + " games, not Adventure. Try again!");
-                }
-             setTimeout(function(){ 
-                 newSheet = mainWorkbook.getActiveSheet().getWorksheets().get("Pie"); 
-                 // Select the Adventure pie slice, 
-                 newSheet.selectMarksAsync("Genre", "Adventure", "ADD");
-
-             }, 8000);
-                return;
-
-         }
-
-        viz.removeEventListener("marksselection", onMarksSelection);
-
-         // Mark selection events being fired more than once may cause too many Merlins to load
-         // Count the number of Clippys shown so that only 2 will ever be displayed.
-         if (($('.clippy').length) < 2) {         
-         
-         clippy.load('Merlin', function(agent2) {
-                    console.log('load');                 
-                    agent2.show();
-                    agent2.moveTo(750, 300);
-                    agent2.speak(alertOutput + ' is an excellent choice.');
-                    agent2.play("Surprised",500);
-                    agent2.play("Thinking",500);
-                    agent2.play("DoMagic2",750, function(){ viz.getWorkbook().activateSheetAsync("Sales Dashboard");});
-                    agent2.moveTo(750,150);//150
-                    agent2.speak("Look, I can throw my voice, too.");
-                    agent2.play("LookRightBlink", 500, function () {
- 
-                        agent2.speak( " What's going on in Seattle?"); 
-                        newSheet = mainWorkbook.getActiveSheet().getWorksheets().get("Map"); 
-                        // Select Seattle
-                        newSheet.selectMarksAsync("State", "Washington", "ADD").then( function (){
-
-                            agent2.play("Congratulate",2000);
-                            agent2.play("Congratulate_2");
-                            agent2.play("Congratulate_2");
-                            agent2.speak("You've been a lovely audience");
-                            agent2.play("Hide");   
-                        });             
-                               
-                    });                  
-            });
-         }
-    }
-}
-
-function onError(message) {
-    alert("Error: '" + message + "'");
-}        
-function onMarksSelection() {
-    mainWorkbook = viz.getWorkbook();
-    var newSheet = mainWorkbook.getActiveSheet().getWorksheets().get("Florida");
-    avoidDupe = 0; // hack to keep mulitple events from firing
-    // See above for promise defintion of onSuccess, onError
-    newSheet.getSelectedMarksAsync().then(onSuccess, onError);
-}        
+        function onMarksSelection() {
+            mainWorkbook = viz.getWorkbook();
+            var newSheet = mainWorkbook.getActiveSheet().getWorksheets().get("Florida");
+            avoidDupe = 0; // hack to keep mulitple events from firing
+            // See above for promise defintion of onSuccess, onError
+            newSheet.getSelectedMarksAsync().then(onSuccess, onError);
+        }        
 
         
     </script>
